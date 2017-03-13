@@ -1,0 +1,20 @@
+$git status
+-현재상태 확인
+
+$git checkout branch_name 
+-branch_name 으로 branch 이동함 $git checkout -b branch_name 할 때 branh 생성됨
+
+1. $git add  : 변경된 파일을 스테이징한다.
+2. $git commit : 스테이징된 파일을 커밋한다.
+3. $git push : 커밋된 리스트를 업로드한다. 
+
+ex)
+1. $git status   : 상태 확인 (변경된 파일 중엥서 add되지 않은 파일 붉은색)
+2. $git add .    or $git add *  :  모든 파일 add
+3. $git status   : 추가된 파일은 녹색으로 표시가 됨.
+4. $git commit -m (message) "할말" 
+5. $git log  :지금까지 커밋한 것들 확인 
+6. $git push : 커밋된 파일을 서버에 올림
+
+  (*** master branch에 파일을 올릴때 git push origin master 로 올림)
+
