@@ -1,0 +1,45 @@
+Git Hub 사용방법 by 강태희
+
+https://www.github.com
+
+—소스 받기
+작업할 경로에서 
+
+$git clone
+
+주소 로 파일을 받아옴
+—폴더 내 경로 이동
+$cd FOLDER_NAME
+—브런치 만들기
+
+$git branch MY_NAME
+—상태 확인
+
+$git status
+
+=> on branch를 확인
+—브런치 이동
+
+$git checkout branch_name
+$git status
+
+=>on branch MY_NAME
+—서버에 업로드(push)
+1. 변경된 파일을 스테이징 : $git add
+2. 스테이징 된 파일을 커밋 : $git commit
+3.커밋된 리스트를 업로드 : $git push
+
+ex)
+1. 변경된 파일의 상태를 확인한다 . : $git status
+=>변경된 파일중에서 스테이징 되지 않은 파일을 붉은색으로 보여준다.
+2. 변경된 파일을 스테이징 한다. : $git add . (all files)
+3. 스테이징 된 파일의 상태를 확인한다. : $git status
+=> 스테이징 된 파일은 녹색으로 표시된다. 
+4. 스테이징도 끝났고 이제 커밋하자. : $git commit -m (message) “할말”
+5. 참고로 작업 확인은 : $git log를 치면 5개까지 보여준다.
+6. 커밋된 파일을 서버에 올린다. : $git push
+
+— — — 
+최초의 브런치를 업로드 하면 에러를 낸다.
+이때 가장 아래 쪽에
+git push —set -upstream origin … 이것을 보고 따라하면 됨.
