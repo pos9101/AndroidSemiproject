@@ -1,0 +1,148 @@
+<%@page import="place.com.model.SeatDAOimpl"%>
+<%@page import="place.com.model.SeatDAO"%>
+<%@page import="place.com.model.SeatVO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<script type="text/javascript" src="./PlaceJSP/jquery-3.1.1.js"></script>
+<%
+	String update = (String) request.getAttribute("update");
+	if (update == null) {
+		update = "0";
+	}
+
+	session = request.getSession();
+	String id = (String) session.getAttribute("id");
+	String seat = (String) session.getAttribute("seat");
+	System.out.println("seat session :" + seat);
+
+	SeatVO vo = new SeatVO();
+	vo.setId(id);
+	SeatDAO dao = new SeatDAOimpl();
+	SeatVO svo = dao.search(vo);
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index2</title>
+<script type="text/javascript">
+<%if (update.equals("1")) {%> 
+    	alert("계정이 수정되었습니다.");
+    	
+    <%}%>
+    </script>
+</head>
+<body>
+	<a href="./signUpdate.do">정보수정</a>
+	<a href="./signOutOK.do">로그아웃</a>
+	<hr />
+	<%
+		if (svo.getSeat() == null) {
+	%><div>
+		<a href="./seat.do">좌석배석</a>
+	</div>
+	<hr />
+	<%
+		}
+	%>
+
+
+
+
+	<a id="seats">좌석확인 <script type="text/javascript">
+	$(function(){
+		$("#seats").on("click",function(){      
+			$(this).html("<%=id%>님의 좌석은 <%=svo.getSeat()%>입니다.<hr/>");
+			});
+
+		});
+	</script>
+		<hr /></a>
+
+	<a href="./seatDeleteOK.do">좌석반납</a>
+
+
+
+
+
+	<a id="target">좌석현황 <script type="text/javascript">
+		$(function() {
+			console.log("ready...");
+			$("#target").on("click", function() {
+				$.ajax({ //비동기통신
+					url : "http://localhost:8090/Team05Project/JSON.do",
+					type : 'post',
+					contentType : "application/x-www-form-urlencoded",
+					data : {
+						method : "post", //키:값
+						program : "CHROME"
+					},
+					dataType : "json",
+					success : function(data, status) {
+						console.log("Success!!");
+// 						console.log(data.length);
+// 						console.log(status);
+// 						console.log(data);
+						var arr = [];
+						for(var i in data){
+							var id = data[i].seat.toString();
+							console.log("id:"+id);
+							arr.push(id);
+						}
+						for(var i in arr){
+							console.log(arr[i]);
+							$("#"+arr[i]).html(arr[i]+"<br>좌석있음");
+						}
+
+					},
+					error : function(xhr, desc, err) {
+						console.log(xhr);
+						console.log("Desc: " + desc + "\nErr:" + err);
+					}
+				});
+
+			});
+
+		});
+	</script>
+	</a>
+	<hr />
+	<div id="result"></div>
+	<table border="1">
+		<tr>
+			<th></th>
+			<th>A</th>
+			<th>B</th>
+			<th>C</th>
+			<th>D</th>
+			<th>E</th>
+			<th>F</th>
+			<th>G</th>
+		</tr>
+		<c:forEach var="i" begin="1" end="6" step="1">
+			<tr>
+				<td  width="90px">${i}</td>
+				<td id="A${i}"  width="90px">A${i}</td>
+				<td id="B${i}"  width="90px">B${i}</td>
+				<td id="C${i}"  width="90px">C${i}</td>
+				<td id="D${i}"  width="90px">D${i}</td>
+				<td id="E${i}"  width="90px">E${i}</td>
+				<td id="F${i}"  width="90px">F${i}</td>
+				<td id="G${i}"  width="90px">G${i}</td>
+			</tr>
+		</c:forEach>
+
+
+
+
+	</table>
+
+
+
+
+
+	<a href="./boardSelect.do">게시판</a>
+</body>
+</html>
