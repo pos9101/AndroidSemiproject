@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 
@@ -21,10 +22,11 @@ import test.com.SeatVO;
 /**
  * Servlet implementation class moviecontroller
  */
-@WebServlet({"/index.do", "/cinema11select.do", "/cinema12select.do", "/cinema21select.do", "/cinema22select.do", "/cinema31select.do",
+@WebServlet({"/index.do", "/cinema11select.do", "/cinema12select.do", "/cinema21select.do", "/cinema22select.do", "/cinema31select.do", "/cinema32select.do",
 	"/cinema11insertOK.do", "/cinema12insertOK.do", "/cinema21insertOK.do", "/cinema22insertOK.do", "/cinema31insertOK.do", "/cinema32insertOK.do",
-	"/cinema32select.do", "/button.do", "/cinema1search.do", "/cinema2search.do", "/cinema3search.do", "/confirm.do"
-	,"/cinema1json.do","/cinema2json.do","/cinema3json.do"})
+	 "/button.do", "/cinema1search.do", "/confirm.do"
+	,"/cinema1json.do","/cinema2json.do","/cinema3json.do"
+	,"/cinema11deleteOK.do", "/cinema12deleteOK.do", "/cinema21deleteOK.do", "/cinema22deleteOK.do", "/cinema31deleteOK.do", "/cinema32deleteOK.do"})
 public class Moviecontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -57,6 +59,8 @@ public class Moviecontroller extends HttpServlet {
 		response.setHeader("Cache-Control", "nocache");
 		response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
+        HttpSession session;
+        String seat=null;
         
         String cPath = request.getContextPath();
 		String sPath = request.getServletPath();
@@ -110,21 +114,13 @@ public class Moviecontroller extends HttpServlet {
 		}
 		
 		else if(sPath.equals("/cinema1search.do")){
-			RequestDispatcher rd = 
-					request.getRequestDispatcher("MovieJSP/cinema1search.jsp");
-			rd.forward(request, response);
-		}
-		
-		else if(sPath.equals("/cinema2search.do")){
-			RequestDispatcher rd = 
-					request.getRequestDispatcher("MovieJSP/cinema2search.jsp");
-			rd.forward(request, response);
-		}
-		
-		else if(sPath.equals("/cinema3search.do")){
-			RequestDispatcher rd = 
-					request.getRequestDispatcher("MovieJSP/cinema3search.jsp");
-			rd.forward(request, response);
+//			seat = request.getParameter("seat");
+//			request.setAttribute("seat", seat);
+//			System.out.println("search.do"+seat);
+//			response.sendRedirect("cinema1search.jsp");
+//			RequestDispatcher rd = 
+//					request.getRequestDispatcher("MovieJSP/cinema1search.jsp?seat="+seat);
+//			rd.forward(request, response);
 		}
 		
 		else if(sPath.equals("/confirm.do")){
@@ -162,7 +158,9 @@ public class Moviecontroller extends HttpServlet {
 		
 		
 		
-		
+		///////////////////////////////////////////////
+		//selectOK
+		//////////////////////////////////////////////
 		
 		
 		
@@ -173,20 +171,28 @@ public class Moviecontroller extends HttpServlet {
 			System.out.println("id: "+request.getParameter("id"));
 			System.out.println("seat: "+request.getParameter("seat"));
 			System.out.println("ciNm: "+Integer.parseInt(request.getParameter("ciNm")));
+			System.out.println("seat_ciNm"+request.getParameter("seat_ciNm"));
+			
 			 String id = request.getParameter("id");
-	         String seat = request.getParameter("seat");
+	         seat = request.getParameter("seat");
+	         System.out.println("OKseat>>>"+seat);
 	         int ciNm = Integer.parseInt(request.getParameter("ciNm"));
+	         String seat_ciNm = request.getParameter("seat_ciNm");
 
 	         SeatVO vo = new SeatVO();
 	         vo.setId(id);
 	         vo.setSeat(seat);
 	         vo.setCiNm(ciNm);
+	         vo.setSeat_ciNm(seat_ciNm);
 
 	         int result = service.seat_insert(vo);
 	         System.out.println("seatInsert :" + result);
 	         if (result == 1) {
 	            System.out.println("seatInsert successed");
-	            response.sendRedirect("index.do");
+				System.out.println("search.do"+seat);
+				RequestDispatcher rd = 
+						request.getRequestDispatcher("MovieJSP/cinema1search.jsp?seat="+seat+"&ciNm="+ciNm+"&seat_ciNm="+seat_ciNm);
+				rd.forward(request, response);
 	         } else {
 	            System.out.println("seatInsert Failed");
 	            response.sendRedirect("cinema11select.do");
@@ -199,20 +205,28 @@ public class Moviecontroller extends HttpServlet {
 			System.out.println("id: "+request.getParameter("id"));
 			System.out.println("seat: "+request.getParameter("seat"));
 			System.out.println("ciNm: "+Integer.parseInt(request.getParameter("ciNm")));
+			System.out.println("seat_ciNm"+request.getParameter("seat_ciNm"));
+			
 			 String id = request.getParameter("id");
-	         String seat = request.getParameter("seat");
+	         seat = request.getParameter("seat");
+	         System.out.println("OKseat>>>"+seat);
 	         int ciNm = Integer.parseInt(request.getParameter("ciNm"));
+	         String seat_ciNm = request.getParameter("seat_ciNm");
 
 	         SeatVO vo = new SeatVO();
 	         vo.setId(id);
 	         vo.setSeat(seat);
 	         vo.setCiNm(ciNm);
+	         vo.setSeat_ciNm(seat_ciNm);
 
 	         int result = service.seat_insert(vo);
 	         System.out.println("seatInsert :" + result);
 	         if (result == 1) {
 	            System.out.println("seatInsert successed");
-	            response.sendRedirect("index.do");
+				System.out.println("search.do"+seat);
+				RequestDispatcher rd = 
+						request.getRequestDispatcher("MovieJSP/cinema1search.jsp?seat="+seat+"&ciNm="+ciNm+"&seat_ciNm="+seat_ciNm);
+				rd.forward(request, response);
 	         } else {
 	            System.out.println("seatInsert Failed");
 	            response.sendRedirect("cinema12select.do");
@@ -224,20 +238,28 @@ public class Moviecontroller extends HttpServlet {
 			System.out.println("id: "+request.getParameter("id"));
 			System.out.println("seat: "+request.getParameter("seat"));
 			System.out.println("ciNm: "+Integer.parseInt(request.getParameter("ciNm")));
+			System.out.println("seat_ciNm"+request.getParameter("seat_ciNm"));
+			
 			 String id = request.getParameter("id");
-	         String seat = request.getParameter("seat");
+	         seat = request.getParameter("seat");
+	         System.out.println("OKseat>>>"+seat);
 	         int ciNm = Integer.parseInt(request.getParameter("ciNm"));
+	         String seat_ciNm = request.getParameter("seat_ciNm");
 
 	         SeatVO vo = new SeatVO();
 	         vo.setId(id);
 	         vo.setSeat(seat);
 	         vo.setCiNm(ciNm);
+	         vo.setSeat_ciNm(seat_ciNm);
 
 	         int result = service.seat_insert(vo);
 	         System.out.println("seatInsert :" + result);
 	         if (result == 1) {
 	            System.out.println("seatInsert successed");
-	            response.sendRedirect("index.do");
+				System.out.println("search.do"+seat);
+				RequestDispatcher rd = 
+						request.getRequestDispatcher("MovieJSP/cinema1search.jsp?seat="+seat+"&ciNm="+ciNm+"&seat_ciNm="+seat_ciNm);
+				rd.forward(request, response);
 	         } else {
 	            System.out.println("seatInsert Failed");
 	            response.sendRedirect("cinema21select.do");
@@ -250,20 +272,28 @@ public class Moviecontroller extends HttpServlet {
 			System.out.println("id: "+request.getParameter("id"));
 			System.out.println("seat: "+request.getParameter("seat"));
 			System.out.println("ciNm: "+Integer.parseInt(request.getParameter("ciNm")));
+			System.out.println("seat_ciNm"+request.getParameter("seat_ciNm"));
+			
 			 String id = request.getParameter("id");
-	         String seat = request.getParameter("seat");
+	         seat = request.getParameter("seat");
+	         System.out.println("OKseat>>>"+seat);
 	         int ciNm = Integer.parseInt(request.getParameter("ciNm"));
+	         String seat_ciNm = request.getParameter("seat_ciNm");
 
 	         SeatVO vo = new SeatVO();
 	         vo.setId(id);
 	         vo.setSeat(seat);
 	         vo.setCiNm(ciNm);
+	         vo.setSeat_ciNm(seat_ciNm);
 
 	         int result = service.seat_insert(vo);
 	         System.out.println("seatInsert :" + result);
 	         if (result == 1) {
 	            System.out.println("seatInsert successed");
-	            response.sendRedirect("index.do");
+				System.out.println("search.do"+seat);
+				RequestDispatcher rd = 
+						request.getRequestDispatcher("MovieJSP/cinema1search.jsp?seat="+seat+"&ciNm="+ciNm+"&seat_ciNm="+seat_ciNm);
+				rd.forward(request, response);
 	         } else {
 	            System.out.println("seatInsert Failed");
 	            response.sendRedirect("cinema22select.do");
@@ -276,20 +306,28 @@ public class Moviecontroller extends HttpServlet {
 			System.out.println("id: "+request.getParameter("id"));
 			System.out.println("seat: "+request.getParameter("seat"));
 			System.out.println("ciNm: "+Integer.parseInt(request.getParameter("ciNm")));
+			System.out.println("seat_ciNm"+request.getParameter("seat_ciNm"));
+			
 			 String id = request.getParameter("id");
-	         String seat = request.getParameter("seat");
+	         seat = request.getParameter("seat");
+	         System.out.println("OKseat>>>"+seat);
 	         int ciNm = Integer.parseInt(request.getParameter("ciNm"));
+	         String seat_ciNm = request.getParameter("seat_ciNm");
 
 	         SeatVO vo = new SeatVO();
 	         vo.setId(id);
 	         vo.setSeat(seat);
 	         vo.setCiNm(ciNm);
+	         vo.setSeat_ciNm(seat_ciNm);
 
 	         int result = service.seat_insert(vo);
 	         System.out.println("seatInsert :" + result);
 	         if (result == 1) {
 	            System.out.println("seatInsert successed");
-	            response.sendRedirect("index.do");
+				System.out.println("search.do"+seat);
+				RequestDispatcher rd = 
+						request.getRequestDispatcher("MovieJSP/cinema1search.jsp?seat="+seat+"&ciNm="+ciNm+"&seat_ciNm="+seat_ciNm);
+				rd.forward(request, response);
 	         } else {
 	            System.out.println("seatInsert Failed");
 	            response.sendRedirect("cinema31select.do");
@@ -301,26 +339,175 @@ public class Moviecontroller extends HttpServlet {
 			System.out.println("id: "+request.getParameter("id"));
 			System.out.println("seat: "+request.getParameter("seat"));
 			System.out.println("ciNm: "+Integer.parseInt(request.getParameter("ciNm")));
+			System.out.println("seat_ciNm"+request.getParameter("seat_ciNm"));
+			
 			 String id = request.getParameter("id");
-	         String seat = request.getParameter("seat");
+	         seat = request.getParameter("seat");
+	         System.out.println("OKseat>>>"+seat);
 	         int ciNm = Integer.parseInt(request.getParameter("ciNm"));
+	         String seat_ciNm = request.getParameter("seat_ciNm");
 
 	         SeatVO vo = new SeatVO();
 	         vo.setId(id);
 	         vo.setSeat(seat);
 	         vo.setCiNm(ciNm);
+	         vo.setSeat_ciNm(seat_ciNm);
 
 	         int result = service.seat_insert(vo);
 	         System.out.println("seatInsert :" + result);
 	         if (result == 1) {
 	            System.out.println("seatInsert successed");
-	            response.sendRedirect("index.do");
+				System.out.println("search.do"+seat);
+				RequestDispatcher rd = 
+						request.getRequestDispatcher("MovieJSP/cinema1search.jsp?seat="+seat+"&ciNm="+ciNm+"&seat_ciNm="+seat_ciNm);
+				rd.forward(request, response);
 	         } else {
 	            System.out.println("seatInsert Failed");
 	            response.sendRedirect("cinema32select.do");
 
 	         }
 		}
+		
+		
+		///////////////////////////////////////////////////////
+		//deleteOK
+		//////////////////////////////////////////////////////
+		
+		
+		
+		
+		else if(sPath.equals("/cinema11deleteOK.do")){
+			
+			String seat_ciNm = request.getParameter("deleteBtn");
+			out.append(seat_ciNm);
+			
+			SeatVO vo = new SeatVO();
+	         vo.setSeat_ciNm(seat_ciNm);;
+	         System.out.println("seat_ciNm>>>> "+seat_ciNm);
+
+	         int result = service.seat_delete(vo);
+	         System.out.println("delete:" + result);
+
+	         if (result == 1) {
+	            System.out.println("delete successed");
+
+	            response.sendRedirect("cinema11select.do");
+	         } else {
+	            System.out.println("delete failed");
+	            response.sendRedirect("MovieJSP/cinema1search.jsp");
+	         }
+		}
+		
+		else if(sPath.equals("/cinema12deleteOK.do")){
+			
+			String seat_ciNm = request.getParameter("deleteBtn");
+			out.append(seat_ciNm);
+			
+			SeatVO vo = new SeatVO();
+	         vo.setSeat_ciNm(seat_ciNm);;
+	         System.out.println("seat_ciNm>>>> "+seat_ciNm);
+
+	         int result = service.seat_delete(vo);
+	         System.out.println("delete:" + result);
+
+	         if (result == 1) {
+	            System.out.println("delete successed");
+
+	            response.sendRedirect("cinema12select.do");
+	         } else {
+	            System.out.println("delete failed");
+	            response.sendRedirect("MovieJSP/cinema1search.jsp");
+	         }
+		}
+		
+		else if(sPath.equals("/cinema21deleteOK.do")){
+			
+			String seat_ciNm = request.getParameter("deleteBtn");
+			out.append(seat_ciNm);
+			
+			SeatVO vo = new SeatVO();
+	         vo.setSeat_ciNm(seat_ciNm);;
+	         System.out.println("seat_ciNm>>>> "+seat_ciNm);
+
+	         int result = service.seat_delete(vo);
+	         System.out.println("delete:" + result);
+
+	         if (result == 1) {
+	            System.out.println("delete successed");
+
+	            response.sendRedirect("cinema21select.do");
+	         } else {
+	            System.out.println("delete failed");
+	            response.sendRedirect("MovieJSP/cinema1search.jsp");
+	         }
+		}
+		
+		else if(sPath.equals("/cinema22deleteOK.do")){
+			
+			String seat_ciNm = request.getParameter("deleteBtn");
+			out.append(seat_ciNm);
+			
+			SeatVO vo = new SeatVO();
+	         vo.setSeat_ciNm(seat_ciNm);;
+	         System.out.println("seat_ciNm>>>> "+seat_ciNm);
+
+	         int result = service.seat_delete(vo);
+	         System.out.println("delete:" + result);
+
+	         if (result == 1) {
+	            System.out.println("delete successed");
+
+	            response.sendRedirect("cinema22select.do");
+	         } else {
+	            System.out.println("delete failed");
+	            response.sendRedirect("MovieJSP/cinema1search.jsp");
+	         }
+		}
+		
+		else if(sPath.equals("/cinema31deleteOK.do")){
+			
+			String seat_ciNm = request.getParameter("deleteBtn");
+			out.append(seat_ciNm);
+			
+			SeatVO vo = new SeatVO();
+	         vo.setSeat_ciNm(seat_ciNm);;
+	         System.out.println("seat_ciNm>>>> "+seat_ciNm);
+
+	         int result = service.seat_delete(vo);
+	         System.out.println("delete:" + result);
+
+	         if (result == 1) {
+	            System.out.println("delete successed");
+
+	            response.sendRedirect("cinema31select.do");
+	         } else {
+	            System.out.println("delete failed");
+	            response.sendRedirect("MovieJSP/cinema1search.jsp");
+	         }
+		}
+		
+		else if(sPath.equals("/cinema32deleteOK.do")){
+			
+			String seat_ciNm = request.getParameter("deleteBtn");
+			out.append(seat_ciNm);
+			
+			SeatVO vo = new SeatVO();
+	         vo.setSeat_ciNm(seat_ciNm);;
+	         System.out.println("seat_ciNm>>>> "+seat_ciNm);
+
+	         int result = service.seat_delete(vo);
+	         System.out.println("delete:" + result);
+
+	         if (result == 1) {
+	            System.out.println("delete successed");
+
+	            response.sendRedirect("cinema32select.do");
+	         } else {
+	            System.out.println("delete failed");
+	            response.sendRedirect("MovieJSP/cinema1search.jsp");
+	         }
+		}
+		
 	}
 
 }

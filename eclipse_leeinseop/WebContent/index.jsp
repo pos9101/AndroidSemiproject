@@ -19,6 +19,7 @@
 		<form action="cinema32select.do"><button type="submit" class="btn btn-info">3관 오후</button></form>
 		<form action="index.do"><button type="submit" class="btn btn-info">홈페이지</button></form>
 		<form action="cinema1json.do"><button type="submit" class="btn btn-info">제이슨</button></form>
+		<form action="confirm.do"><button type="submit" class="btn btn-info">내 예매확인</button></form>
 		<!-- <a href="/cinema11select.do">1관</a> -->
 	</header>
 

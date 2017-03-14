@@ -29,13 +29,13 @@
 		<c:forEach var="i" begin="0" end="5" step="1">
 			<tr>
 				<td class="success">${i+1}</td>
-				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat=A${i+1}">A${i+1}</a></td>
-				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat=B${i+1}">B${i+1}</a></td>
-				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat=C${i+1}">C${i+1}</a></td>
-				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat=D${i+1}">D${i+1}</a></td>
-				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat=E${i+1}">E${i+1}</a></td>
-				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat=F${i+1}">F${i+1}</a></td>
-				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat=G${i+1}">G${i+1}</a></td>
+				<td><a href="cinema12insertOK.do?id=admin&ciNm=11&seat_ciNm=12A${i+1}&seat=A${i+1}">A${i+1}</a></td>
+				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12B${i+1}&seat=B${i+1}">B${i+1}</a></td>
+				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12C${i+1}&seat=C${i+1}">C${i+1}</a></td>
+				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12D${i+1}&seat=D${i+1}">D${i+1}</a></td>
+				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12E${i+1}&seat=E${i+1}">E${i+1}</a></td>
+				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12F${i+1}&seat=F${i+1}">F${i+1}</a></td>
+				<td><a href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12G${i+1}&seat=G${i+1}">G${i+1}</a></td>
 			</tr>
 
 		</c:forEach>

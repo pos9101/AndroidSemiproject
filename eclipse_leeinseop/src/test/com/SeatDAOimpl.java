@@ -19,10 +19,10 @@ public class SeatDAOimpl implements SeatDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	private final String SQL_INSERT = "insert into seat(id,seat,ciNm) " + "values(?,?,?)";
-	private final String SQL_UPDATE = "update seat set  seat=?, ciNm=? where id=?";
-	private final String SQL_DELETE = "delete from seat where id=?";
-	private final String SQL_SEARCH = "select * from seat where id=?";
+	private final String SQL_INSERT = "insert into seat(id,seat,ciNm,seat_ciNm) " + "values(?,?,?,?)";
+	private final String SQL_UPDATE = "update seat set  seat=?, ciNm=? ,seat_ciNm where id=?";
+	private final String SQL_DELETE = "delete from seat where seat_ciNm=?";
+	private final String SQL_SEARCH = "select id,seat,ciNm from seat where id=?";
 	private final String SQL_SELECT = "select * from seat";
 	
 	public SeatDAOimpl() {
@@ -43,6 +43,7 @@ public class SeatDAOimpl implements SeatDAO {
 		System.out.println(vo.getId());
 		System.out.println(vo.getSeat());
 		System.out.println(vo.getCiNm());
+		System.out.println(vo.getSeat_ciNm());
 
 		int flag = 0;
 		try {
@@ -52,6 +53,7 @@ public class SeatDAOimpl implements SeatDAO {
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getSeat());
 			pstmt.setInt(3, vo.getCiNm());
+			pstmt.setString(4, vo.getSeat_ciNm());
 
 			flag = pstmt.executeUpdate();
 			System.out.println("pstmt Successed..." + flag);
@@ -90,6 +92,7 @@ public class SeatDAOimpl implements SeatDAO {
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getSeat());
 			pstmt.setInt(3, vo.getCiNm());
+			pstmt.setString(4, vo.getSeat_ciNm());
 
 			flag = pstmt.executeUpdate();
 			System.out.println("update flag : " + flag);
@@ -122,7 +125,7 @@ public class SeatDAOimpl implements SeatDAO {
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 			System.out.println("conn Successed...");
 			pstmt = conn.prepareStatement(SQL_DELETE);
-			pstmt.setString(1, vo.getId());
+			pstmt.setString(1, vo.getSeat_ciNm());
 
 			flag = pstmt.executeUpdate();
 			System.out.println("delete flag : " + flag);
@@ -215,6 +218,7 @@ public class SeatDAOimpl implements SeatDAO {
 				vo2.setId(rs.getString("id"));
 				vo2.setSeat(rs.getString("seat"));
 				vo2.setCiNm(rs.getInt("ciNm"));
+				vo2.setSeat_ciNm(rs.getString("seat_ciNm"));
 
 				list.add(vo2);
 			}
