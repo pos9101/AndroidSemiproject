@@ -1,8 +1,10 @@
 package app.com.movie;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.webkit.WebChromeClient;
@@ -48,13 +50,15 @@ public class MovieTimeActivity extends AppCompatActivity {
 
         });
 
+        Intent intent = getIntent();
+//        String pageNum = intent.getIntExtra("PageNum",1);
+//        Log.i("MovieTimeActivity","PageNum>>>>"+pageNum);
 
-
-        webview.loadUrl("http://m.ruliweb.com");
-        getWindow().requestFeature(Window.FEATURE_PROGRESS);
-
-        webview.getSettings().setJavaScriptEnabled(true);
-        setContentView(webview);
+//        webview.loadUrl("http://m.ruliweb.com");
+//        getWindow().requestFeature(Window.FEATURE_PROGRESS);
+//
+//        webview.getSettings().setJavaScriptEnabled(true);
+//        setContentView(webview);
 
 
 
