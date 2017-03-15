@@ -40,6 +40,8 @@ import java.util.Date;
 
 public class MovieActivity extends AppCompatActivity {
 
+    static int pageNum = 1;
+
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -71,6 +73,27 @@ public class MovieActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        ///////////////page 변경시 확인 하는 것 ////
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+//                Log.i("onPageSelected",""+position+1);
+                pageNum = position+1;
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        //////////////////////////////////////////////
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +104,8 @@ public class MovieActivity extends AppCompatActivity {
                 Intent intent = new Intent(
                         getApplicationContext(),
                         MovieTimeActivity.class);
+                intent.putExtra("pageNum",pageNum);
+                Log.i("MainActivity",">>>"+pageNum+"<<<pageNum");
                 startActivity(intent);
             }
         });
@@ -196,8 +221,6 @@ public class MovieActivity extends AppCompatActivity {
 
             ///////////////
 
-            System.out.println("getArguments().getInt(ARG_SECTION_NUMBER)>>>"+getArguments().getInt(ARG_SECTION_NUMBER));
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 //            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 
             return rootView;
@@ -265,6 +288,9 @@ public class MovieActivity extends AppCompatActivity {
                             if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
                                 textView.setText("RANK:"+vos[0].getRank()+" 순위변동 "+vos[0].getRankInten()+" "+vos[0].getMovieNm()+"\n"
                                         +"개봉일:"+vos[0].getOpenDt()+"\n 전일 관객 수:"+df.format(Double.parseDouble(vos[0].getAudiCnt()))+" 누적 관객 수:"+df.format(Double.parseDouble(vos[0].getAudiAcc())));
+
+
+
                             }else if(getArguments().getInt(ARG_SECTION_NUMBER)==2){
                                 textView.setText("RANK:"+vos[1].getRank()+" 순위변동 "+vos[1].getRankInten()+" "+vos[1].getMovieNm()+"\n"
                                         +"개봉일:"+vos[1].getOpenDt()+"\n 전일 관객 수:"+df.format(Double.parseDouble(vos[1].getAudiCnt()))+" 누적 관객 수:"+df.format(Double.parseDouble(vos[1].getAudiAcc())));
