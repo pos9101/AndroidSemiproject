@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">SemiProject_movie</string>
+    <string name="app_name">Test02Login</string>
+    <string name="id">id</string>
+    <string name="password">password</string>
+    <string name="name">name</string>
+    <string name="tel">tel</string>
+    <string name="email">email</string>
+    <string name="man">남자</string>
+    <string name="woman">여자</string>
 </resources>
