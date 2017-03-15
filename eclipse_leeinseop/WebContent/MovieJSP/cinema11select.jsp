@@ -15,7 +15,7 @@
 		</hgroup>
 	</header>
 		
-		<table class="table table-bordered table-hover" border="1">
+		<table class="table table-bordered table-hover" border="1" id="table11">
 		<tr class="success">
 			<th></th>
 			<th>A</th>
@@ -29,13 +29,13 @@
 		<c:forEach var="i" begin="0" end="5" step="1">
 			<tr>
 				<td class="success">${i+1}</td>
-				<td id="A${i}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11A${i+1}&seat=A${i+1}">A${i+1}</a></td>
-				<td id="B${i}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11B${i+1}&seat=B${i+1}">B${i+1}</a></td>
-				<td id="C${i}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11C${i+1}&seat=C${i+1}">C${i+1}</a></td>
-				<td id="D${i}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11D${i+1}&seat=D${i+1}">D${i+1}</a></td>
-				<td id="E${i}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11E${i+1}&seat=E${i+1}">E${i+1}</a></td>
-				<td id="F${i}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11F${i+1}&seat=F${i+1}">F${i+1}</a></td>
-				<td id="G${i}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11G${i+1}&seat=G${i+1}">G${i+1}</a></td>
+				<td id="A${i+1}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11A${i+1}&seat=A${i+1}">A${i+1}</a></td>
+				<td id="B${i+1}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11B${i+1}&seat=B${i+1}">B${i+1}</a></td>
+				<td id="C${i+1}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11C${i+1}&seat=C${i+1}">C${i+1}</a></td>
+				<td id="D${i+1}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11D${i+1}&seat=D${i+1}">D${i+1}</a></td>
+				<td id="E${i+1}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11E${i+1}&seat=E${i+1}">E${i+1}</a></td>
+				<td id="F${i+1}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11F${i+1}&seat=F${i+1}">F${i+1}</a></td>
+				<td id="G${i+1}"><a href="cinema11insertOK.do?id=admin&ciNm=11&seat_ciNm=11G${i+1}&seat=G${i+1}">G${i+1}</a></td>
 			</tr>
 
 		</c:forEach>
@@ -45,8 +45,45 @@
 		
 		
 	
+   <script type="text/javascript">
+      $(function() {
+         console.log("ready...");
+            $.ajax({ //비동기통신
+               url : "http://localhost:8090/Semiproject_movie/cinema11json.do",
+               type : 'post',
+               contentType : "application/x-www-form-urlencoded",
+               data : {
+                  method : "post", //키:값
+                  program : "CHROME"
+               },
+               dataType : "json",
+               success : function(data, status) {
+                  console.log("Success!!");
+//                   console.log(data.length);
+//                   console.log(status);
+//                   console.log(data);
+                  var arr = [];
+                  for(var i in data){
+                     var id = data[i].seat.toString();
+                     console.log("id:"+id);
+                     arr.push(id);
+                  }
+                  for(var i in arr){
+                     console.log(arr[i]);
+                     $("#"+arr[i]).html("<strong><mark>X</mark></strong>");
+                  }
+
+               },
+               error : function(xhr, desc, err) {
+                  console.log(xhr);
+                  console.log("Desc: " + desc + "\nErr:" + err);
+               }
+            });
+
+
+      });
    </script>
-   </a></li>
+  
 	
 	
 

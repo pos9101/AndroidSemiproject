@@ -25,7 +25,7 @@ import test.com.SeatVO;
 @WebServlet({"/index.do", "/cinema11select.do", "/cinema12select.do", "/cinema21select.do", "/cinema22select.do", "/cinema31select.do", "/cinema32select.do",
 	"/cinema11insertOK.do", "/cinema12insertOK.do", "/cinema21insertOK.do", "/cinema22insertOK.do", "/cinema31insertOK.do", "/cinema32insertOK.do",
 	 "/button.do", "/cinema1search.do", "/confirm.do"
-	,"/cinema1json.do","/cinema2json.do","/cinema3json.do"
+	,"/cinemaALLjson.do","/cinema11json.do","/cinema12json.do","/cinema21json.do","/cinema22json.do","/cinema31json.do","/cinema32json.do","/cinema3json.do"
 	,"/cinema11deleteOK.do", "/cinema12deleteOK.do", "/cinema21deleteOK.do", "/cinema22deleteOK.do", "/cinema31deleteOK.do", "/cinema32deleteOK.do"})
 public class Moviecontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -129,24 +129,45 @@ public class Moviecontroller extends HttpServlet {
 			rd.forward(request, response);
 		}
 		
-		else if(sPath.equals("/cinema1json.do")){
-			response.setContentType("application/json");
-	  		response.setHeader("Cache-Control", "nocache");
-	  		response.setCharacterEncoding("utf-8");
-	  		PrintWriter printWriter = response.getWriter();
-
-
-	          List<SeatVO> list = service.seat_select();
-	          JSONArray jArray = new JSONArray(list);
-				
-	          printWriter.append(jArray.toString());
+		else if(sPath.equals("/cinemaALLjson.do")){
+			CinemaAlljson json1 = new CinemaAlljson();
+			json1.execute(request, response);
 		}
 		
-		else if(sPath.equals("/cinema2json.do")){
-			RequestDispatcher rd = 
-					request.getRequestDispatcher("MovieJSP/cinema2json.jsp");
-			rd.forward(request, response);
+		/////////////////////////////////x 관 x 시간대 JSON///////////////
+		
+		
+		else if(sPath.equals("/cinema11json.do")){
+			CinemaSelectedjson json2 = new CinemaSelectedjson();
+			json2.execute(request, response, 11);
+			System.out.println("json2 11>>>"+json2);
 		}
+		
+		else if(sPath.equals("/cinema12json.do")){
+			CinemaSelectedjson json2 = new CinemaSelectedjson();
+			json2.execute(request, response, 12);
+		}
+		
+		else if(sPath.equals("/cinema21json.do")){
+			CinemaSelectedjson json2 = new CinemaSelectedjson();
+			json2.execute(request, response, 21);
+		}
+		
+		else if(sPath.equals("/cinema22json.do")){
+			CinemaSelectedjson json2 = new CinemaSelectedjson();
+			json2.execute(request, response, 22);
+		}
+		
+		else if(sPath.equals("/cinema31json.do")){
+			CinemaSelectedjson json2 = new CinemaSelectedjson();
+			json2.execute(request, response, 31);
+		}
+		
+		else if(sPath.equals("/cinema32json.do")){
+			CinemaSelectedjson json2 = new CinemaSelectedjson();
+			json2.execute(request, response, 32);
+		}
+		//////////////////////////////////////////////////////////////////////
 		
 		else if(sPath.equals("/cinema3json.do")){
 			RequestDispatcher rd = 
