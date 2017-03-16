@@ -51,14 +51,21 @@ public class MovieTimeActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-//        String pageNum = intent.getIntExtra("PageNum",1);
-//        Log.i("MovieTimeActivity","PageNum>>>>"+pageNum);
+        int pageNum = intent.getIntExtra("pageNum",1);
+        Log.i("MovieTimeActivity","PageNum>>>>"+pageNum);
 
-//        webview.loadUrl("http://m.ruliweb.com");
-//        getWindow().requestFeature(Window.FEATURE_PROGRESS);
-//
-//        webview.getSettings().setJavaScriptEnabled(true);
-//        setContentView(webview);
+        if (pageNum==1) {
+            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/kong.do");
+        }else if (pageNum==2) {
+            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/logan.do");
+        }else if (pageNum==3) {
+            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/haebing.do");
+        }
+        
+        getWindow().requestFeature(Window.FEATURE_PROGRESS);
+
+        webview.getSettings().setJavaScriptEnabled(true);
+        setContentView(webview);
 
 
 
