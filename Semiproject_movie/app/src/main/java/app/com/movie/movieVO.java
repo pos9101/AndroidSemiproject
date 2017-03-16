@@ -12,6 +12,8 @@ public class movieVO {
     private String audiCnt;
     private String audiAcc;
     private String movieNm;
+    private String genreAlt;
+    private String peopleNm;
 
 
     public String getRank() {
@@ -63,6 +65,20 @@ public class movieVO {
     }
 
 
+    public String getGenreAlt() {
+        return genreAlt;
+    }
 
+    public void setGenreAlt(String genreAlt) {
+        this.genreAlt = genreAlt;
+    }
+
+    public String getPeopleNm() {
+        return peopleNm;
+    }
+
+    public void setPeopleNm(String peopleNm) {
+        this.peopleNm = peopleNm;
+    }
 
 }

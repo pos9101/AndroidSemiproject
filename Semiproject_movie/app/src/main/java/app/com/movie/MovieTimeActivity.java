@@ -61,7 +61,7 @@ public class MovieTimeActivity extends AppCompatActivity {
         }else if (pageNum==3) {
             webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/haebing.do");
         }
-        
+
         getWindow().requestFeature(Window.FEATURE_PROGRESS);
 
         webview.getSettings().setJavaScriptEnabled(true);
