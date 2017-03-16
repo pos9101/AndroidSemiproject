@@ -205,7 +205,7 @@ public class TestAdapter extends BaseAdapter {
                     }
 
                     final String txtJSON2 = sb.toString();
-                    Log.i("txtJSON2>>>>",txtJSON2);
+//                    Log.i("txtJSON2>>>>",txtJSON2);
 
                     JSONObject obj2 = new JSONObject(txtJSON2);
                     JSONObject obj_MLR = new JSONObject(obj2.getString("movieListResult"));
