@@ -13,11 +13,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-	<header> <hgroup>
-	<h1>1관 오후</h1>
-	</hgroup> </header>
+<div class="container-fluid">
+  <div class="row">
+  
+  
+	<header> 
+		<hgroup>
+			<div class="container">
+				<h1><p class="text-center">콩: 스컬 아일랜드</p></h1></br>
+				<h3><p class="text-center">1관 오후</p></h3>
+			</div>
+		</hgroup> 
+	</header>
 
 	<table class="table table-bordered table-hover" border="1" id="table12">
 		<tr class="success">
@@ -50,10 +64,11 @@
 			</tr>
 
 		</c:forEach>
+		</table>
 
-		<form action="index.do">
-			<button type="submit" class="btn btn-info">홈페이지</button>
-		</form>
+<!-- 		<form action="index.do"> -->
+<!-- 			<button type="submit" class="btn btn-info">홈페이지</button> -->
+<!-- 		</form> -->
 
 
 
@@ -98,5 +113,8 @@
 		</script>
 		
 		<a>아이디: <%=id%></a>
+		
+</div>
+</div>		
 </body>
 </html>

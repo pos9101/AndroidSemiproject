@@ -32,11 +32,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 </head>
 <body>
+<div class="container-fluid">
+  <div class="row">
+  
+  
 <!-- 	<form action="index.do"><button type="submit" class="btn btn-info">홈페이지</button></form> -->
-	<a><%=id%>님 귀하의 예매내역입니다.</a>
+	
+	<div class="container">
+	<p class="text-center"><h3><%=id%>님 귀하의 예매내역입니다.</h3></p>
+	</div>
+	
+	
 	<br />
+	
+	
 	<table border="1">
 
 		<%
@@ -68,6 +84,7 @@
 	
 
 
-
+</div>
+</div>
 </body>
 </html>

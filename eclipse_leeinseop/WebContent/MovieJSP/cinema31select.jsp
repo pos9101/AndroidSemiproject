@@ -12,11 +12,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 </head>
 <body>
+<div class="container-fluid">
+  <div class="row">
+  
+  
+  
 <header>
 		<hgroup>
-			<h1>3관 오전</h1>
+			<div class="container">
+				<h1><p class="text-center">해빙</p></h1></br>
+				<h3><p class="text-center">3관 오전</p></h3>
+			</div>
 		</hgroup>
 	</header>
 		
@@ -35,17 +48,18 @@
 			<tr>
 				<td class="success">${i+1}</td>
 				<td id="A${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31A${i+1}&seat=A${i+1}">A${i+1}</a></td>
-				<td id="B${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31A${i+1}&seat=B${i+1}">B${i+1}</a></td>
-				<td id="C${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31A${i+1}&seat=C${i+1}">C${i+1}</a></td>
-				<td id="D${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31A${i+1}&seat=D${i+1}">D${i+1}</a></td>
-				<td id="E${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31A${i+1}&seat=E${i+1}">E${i+1}</a></td>
-				<td id="F${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31A${i+1}&seat=F${i+1}">F${i+1}</a></td>
-				<td id="G${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31A${i+1}&seat=G${i+1}">G${i+1}</a></td>
+				<td id="B${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31B${i+1}&seat=B${i+1}">B${i+1}</a></td>
+				<td id="C${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31C${i+1}&seat=C${i+1}">C${i+1}</a></td>
+				<td id="D${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31D${i+1}&seat=D${i+1}">D${i+1}</a></td>
+				<td id="E${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31E${i+1}&seat=E${i+1}">E${i+1}</a></td>
+				<td id="F${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31F${i+1}&seat=F${i+1}">F${i+1}</a></td>
+				<td id="G${i+1}"><a href="cinema31insertOK.do?id=<%=id%>&ciNm=31&seat_ciNm=31G${i+1}&seat=G${i+1}">G${i+1}</a></td>
 			</tr>
 
 		</c:forEach>
+		</table>
 		
-		<form action="index.do"><button type="submit" class="btn btn-info">홈페이지</button></form>
+<!-- 		<form action="index.do"><button type="submit" class="btn btn-info">홈페이지</button></form> -->
 		
 		
 		
@@ -92,5 +106,9 @@
 
 
 <a>아이디: <%=id%></a>
+
+
+</div>
+</div>
 </body>
 </html>
