@@ -1,0 +1,68 @@
+<%@page import="java.util.List"%>
+<%@page import="test.com.SeatDAOimpl"%>
+<%@page import="test.com.SeatDAO"%>
+<%@page import="test.com.SeatVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String id = request.getParameter("id");
+	System.out.println("seatsearch id>>>>" + id);
+
+	SeatVO vo = new SeatVO();
+	//     vo.setId(id);
+	SeatDAO dao = new SeatDAOimpl();
+	List<SeatVO> list = dao.select();
+
+	request.setAttribute("list", list);
+	System.out.println("search>>>" + list);
+
+	for (int i = 0; i < list.size(); i++) {
+		vo = list.get(i);
+		System.out.println(vo.getSeat() + "," + vo.getCiNm());
+	}
+
+	String cinema = null;
+	String cinemaNumber = null;
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="index.do"><button type="submit" class="btn btn-info">홈페이지</button></form>
+	<a><%=id%>님 귀하의 예매내역입니다.</a>
+	<br />
+	<table border="1">
+
+		<%
+			for (int i = 0; i < list.size(); i++) {
+				vo = list.get(i);
+				if ((vo.getCiNm() % 2) == 1) {
+					cinema = "오전";
+				} else if ((vo.getCiNm() % 2) == 0) {
+					cinema = "오후";
+				}
+				if (vo.getCiNm() < 13) {
+					cinemaNumber = "1관";
+				} else if (vo.getCiNm() < 23 && vo.getCiNm() > 13) {
+					cinemaNumber = "2관";
+				} else if (vo.getCiNm() < 33 && vo.getCiNm() > 23) {
+					cinemaNumber = "3관";
+				}
+		%>
+		<tr>
+			<td>상영관: <%=cinemaNumber%> // 상영시간: <%=cinema%> // 좌석: <%=vo.getSeat()%></td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
+	
+
+
+
+</body>
+</html>
