@@ -24,7 +24,7 @@ import test.com.SeatVO;
  */
 @WebServlet({"/index.do", "/cinema11select.do", "/cinema12select.do", "/cinema21select.do", "/cinema22select.do", "/cinema31select.do", "/cinema32select.do",
 	"/cinema11insertOK.do", "/cinema12insertOK.do", "/cinema21insertOK.do", "/cinema22insertOK.do", "/cinema31insertOK.do", "/cinema32insertOK.do",
-	 "/button.do", "/cinema1search.do", "/confirm.do"
+	 "/button.do", "/cinema1search.do", "/confirm.do", "/seatsearch.do", "/kong.do", "/logan.do", "/haebing.do"
 	,"/cinemaALLjson.do","/cinema11json.do","/cinema12json.do","/cinema21json.do","/cinema22json.do","/cinema31json.do","/cinema32json.do","/cinema3json.do"
 	,"/cinema11deleteOK.do", "/cinema12deleteOK.do", "/cinema21deleteOK.do", "/cinema22deleteOK.do", "/cinema31deleteOK.do", "/cinema32deleteOK.do"})
 public class Moviecontroller extends HttpServlet {
@@ -126,6 +126,20 @@ public class Moviecontroller extends HttpServlet {
 		else if(sPath.equals("/confirm.do")){
 			RequestDispatcher rd = 
 					request.getRequestDispatcher("MovieJSP/confirm.jsp");
+			rd.forward(request, response);
+		}
+		
+		else if(sPath.equals("/seatsearch.do")){
+			String id = request.getParameter("id");
+			System.out.println("seatsearch.do");
+			System.out.println("id...admin>>>>"+id);
+			if(id == ""){
+	             response.sendRedirect("confirm.do");
+	             return;
+	          }
+	         
+	        RequestDispatcher rd = 
+					request.getRequestDispatcher("MovieJSP/seatsearch.jsp");
 			rd.forward(request, response);
 		}
 		
@@ -527,6 +541,28 @@ public class Moviecontroller extends HttpServlet {
 	            System.out.println("delete failed");
 	            response.sendRedirect("MovieJSP/cinema1search.jsp");
 	         }
+		}
+		
+		///////////////////////////////////////////
+		//movie////////////////////////////////////
+		///////////////////////////////////////////
+		
+		else if(sPath.equals("/kong.do")){
+			RequestDispatcher rd = 
+					request.getRequestDispatcher("MovieJSP/kong.jsp");
+			rd.forward(request, response);
+		}
+		
+		else if(sPath.equals("/logan.do")){
+			RequestDispatcher rd = 
+					request.getRequestDispatcher("MovieJSP/logan.jsp");
+			rd.forward(request, response);
+		}
+		
+		else if(sPath.equals("/haebing.do")){
+			RequestDispatcher rd = 
+					request.getRequestDispatcher("MovieJSP/haebing.jsp");
+			rd.forward(request, response);
 		}
 		
 	}

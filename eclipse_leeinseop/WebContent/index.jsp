@@ -9,15 +9,20 @@
 <body>
 	<header>
 		<hgroup>
-			<h1>영화관, 영화시간선택</h1>
+			<h1>영화선택</h1>
 		</hgroup>
-		<form action="cinema11select.do"><button type="submit" class="btn btn-info">1관 오전</button></form>
-		<form action="cinema12select.do"><button type="submit" class="btn btn-info">1관 오후</button></form>
-		<form action="cinema21select.do"><button type="submit" class="btn btn-info">2관 오전</button></form>
-		<form action="cinema22select.do"><button type="submit" class="btn btn-info">2관 오후</button></form>
-		<form action="cinema31select.do"><button type="submit" class="btn btn-info">3관 오전</button></form>
-		<form action="cinema32select.do"><button type="submit" class="btn btn-info">3관 오후</button></form>
-		<form action="index.do"><button type="submit" class="btn btn-info">홈페이지</button></form>
+<!-- 		<form action="cinema11select.do"><button type="submit" class="btn btn-info">1관 오전</button></form> -->
+<!-- 		<form action="cinema12select.do"><button type="submit" class="btn btn-info">1관 오후</button></form> -->
+<!-- 		<form action="cinema21select.do"><button type="submit" class="btn btn-info">2관 오전</button></form> -->
+<!-- 		<form action="cinema22select.do"><button type="submit" class="btn btn-info">2관 오후</button></form> -->
+<!-- 		<form action="cinema31select.do"><button type="submit" class="btn btn-info">3관 오전</button></form> -->
+<!-- 		<form action="cinema32select.do"><button type="submit" class="btn btn-info">3관 오후</button></form> -->
+		<br/>
+		
+		<form action="kong.do"><button type="submit" class="btn btn-info">콩: 스컬 아일랜드</button></form>
+		<form action="logan.do"><button type="submit" class="btn btn-info">로건</button></form>
+		<form action="haebing.do"><button type="submit" class="btn btn-info">해빙</button></form><br/>
+		
 		<form action="cinemaALLjson.do"><button type="submit" class="btn btn-info">전 극장 전 좌석 제이슨</button></form>
 <!-- 		<form action="cinemaSelectedjson.do"><button type="submit" class="btn btn-info">제이슨2</button></form> -->
 		<form action="confirm.do"><button type="submit" class="btn btn-info">내 예매확인</button></form>

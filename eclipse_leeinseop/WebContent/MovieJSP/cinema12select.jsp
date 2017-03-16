@@ -2,16 +2,36 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="./MovieJSP/jquery-3.1.1.js"></script>
+ <%
+ 	
+	String id = session.getAttribute("id").toString();
+ 	
+	System.out.println("받음>>>>"+id);
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-	<header> <hgroup>
-	<h1>1관 오후</h1>
-	</hgroup> </header>
+<div class="container-fluid">
+  <div class="row">
+  
+  
+	<header> 
+		<hgroup>
+			<div class="container">
+				<h1><p class="text-center">콩: 스컬 아일랜드</p></h1></br>
+				<h3><p class="text-center">1관 오후</p></h3>
+			</div>
+		</hgroup> 
+	</header>
 
 	<table class="table table-bordered table-hover" border="1" id="table12">
 		<tr class="success">
@@ -28,26 +48,27 @@
 			<tr>
 				<td class="success">${i+1}</td>
 				<td id="A${i+1}"><a
-					href="cinema12insertOK.do?id=admin&ciNm=11&seat_ciNm=12A${i+1}&seat=A${i+1}">A${i+1}</a></td>
+					href="cinema12insertOK.do?id=<%=id%>&ciNm=11&seat_ciNm=12A${i+1}&seat=A${i+1}">A${i+1}</a></td>
 				<td id="B${i+1}"><a
-					href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12B${i+1}&seat=B${i+1}">B${i+1}</a></td>
+					href="cinema12insertOK.do?id=<%=id%>&ciNm=12&seat_ciNm=12B${i+1}&seat=B${i+1}">B${i+1}</a></td>
 				<td id="C${i+1}"><a
-					href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12C${i+1}&seat=C${i+1}">C${i+1}</a></td>
+					href="cinema12insertOK.do?id=<%=id%>&ciNm=12&seat_ciNm=12C${i+1}&seat=C${i+1}">C${i+1}</a></td>
 				<td id="D${i+1}"><a
-					href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12D${i+1}&seat=D${i+1}">D${i+1}</a></td>
+					href="cinema12insertOK.do?id=<%=id%>&ciNm=12&seat_ciNm=12D${i+1}&seat=D${i+1}">D${i+1}</a></td>
 				<td id="E${i+1}"><a
-					href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12E${i+1}&seat=E${i+1}">E${i+1}</a></td>
+					href="cinema12insertOK.do?id=<%=id%>&ciNm=12&seat_ciNm=12E${i+1}&seat=E${i+1}">E${i+1}</a></td>
 				<td id="F${i+1}"><a
-					href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12F${i+1}&seat=F${i+1}">F${i+1}</a></td>
+					href="cinema12insertOK.do?id=<%=id%>&ciNm=12&seat_ciNm=12F${i+1}&seat=F${i+1}">F${i+1}</a></td>
 				<td id="G${i+1}"><a
-					href="cinema12insertOK.do?id=admin&ciNm=12&seat_ciNm=12G${i+1}&seat=G${i+1}">G${i+1}</a></td>
+					href="cinema12insertOK.do?id=<%=id%>&ciNm=12&seat_ciNm=12G${i+1}&seat=G${i+1}">G${i+1}</a></td>
 			</tr>
 
 		</c:forEach>
+		</table>
 
-		<form action="index.do">
-			<button type="submit" class="btn btn-info">홈페이지</button>
-		</form>
+<!-- 		<form action="index.do"> -->
+<!-- 			<button type="submit" class="btn btn-info">홈페이지</button> -->
+<!-- 		</form> -->
 
 
 
@@ -56,7 +77,7 @@
 				console.log("ready...");
 				$
 						.ajax({ //비동기통신
-							url : "http://localhost:8090/Semiproject_movie/cinema12json.do",
+							url : "http://192.168.0.161:8090/Semiproject_movie/cinema12json.do",
 							type : 'post',
 							contentType : "application/x-www-form-urlencoded",
 							data : {
@@ -90,5 +111,10 @@
 
 			});
 		</script>
+		
+		<a>아이디: <%=id%></a>
+		
+</div>
+</div>		
 </body>
 </html>
