@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test02Login</string>
+    <string name="app_name">SemiProject</string>
     <string name="id">id</string>
     <string name="password">password</string>
     <string name="name">name</string>

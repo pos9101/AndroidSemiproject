@@ -16,7 +16,7 @@ public class RequestToServerDAO {
 
 	private String URL_SEARCH = "http://192.168.0.131:8090/project02movieweb/search_json.do";
 	private final String URL_INSERT = "http://192.168.0.131:8090/project02movieweb/insert_json.do";
-	private final String URL_UPDATE = "http://192.168.0.131t:8090/project02movieweb/update_json.do";
+	private final String URL_UPDATE = "http://192.168.0.131:8090/project02movieweb/update_json.do";
 	private final String URL_DELETE = "http://192.168.0.131:8090/project02movieweb/delete_json.do";
 	private final String URL_LOGIN = "http://192.168.0.131:8090/project02movieweb/login_json.do";
 	
@@ -26,24 +26,40 @@ public class RequestToServerDAO {
 	
 	public SignVO search(SignVO vo) throws JSONException {
 
-		String jstr =requestQuery(URL_SEARCH+"?id="+vo.getId());
-		 JSONObject jboj = new JSONObject(jstr);
+		String str =requestQuery(URL_SEARCH+"?id="+vo.getId());
+		Log.i("RQA>>","search");
+		Log.i("JASON>>",str);
+		 JSONObject jboj = new JSONObject(str);
 					 vo.setId(jboj.getString("id"));
-					 vo.setEmail(jboj.getString("emal"));
+					 vo.setEmail(jboj.getString("email"));
 					 vo.setName(jboj.getString("name"));
 					 vo.setTel(jboj.getString("tel"));
+//		Log.i("RQA>>","Name:"+vo.getName());
+//		Log.i("RQA>>","Id:"+vo.getId());
+//		Log.i("RQA>>","Email:"+vo.getEmail());
+//		Log.i("RQA>>","Tel:"+vo.getTel());
 		return vo;
 	}
 	
 	public boolean insert(SignVO vo){
+		Log.i("RQA>>","insert in...");
+		Log.i("RQA>>","Name:"+vo.getName());
+		Log.i("RQA>>","Id:"+vo.getId());
+		Log.i("RQA>>","Email:"+vo.getEmail());
+		Log.i("RQA>>","Tel:"+vo.getTel());
 		String jstr =requestQuery(URL_INSERT+"?id="+ vo.getId() + "&name="+ vo.getName()
 				+ "&tel="+ vo.getTel() + "&email="+ vo.getEmail() + "&pw="+ vo.getPw());
 		return Boolean.parseBoolean(jstr);
 	}
 	
 	public boolean update(SignVO vo){
-		String jstr =requestQuery(URL_UPDATE+"?id="+ vo.getId() + "&name="+ vo.getName()
-				+ "&tel="+ vo.getTel() + "&email="+ vo.getEmail() + "&pw="+ vo.getPw());
+		Log.i("RQA>>","update in...");
+		Log.i("RQA>>","Name:"+vo.getName());
+		Log.i("RQA>>","Id:"+vo.getId());
+		Log.i("RQA>>","Email:"+vo.getEmail());
+		Log.i("RQA>>","Tel:"+vo.getTel());
+		String jstr =requestQuery(URL_UPDATE+"?id="+ vo.getId() + "&tel="+ vo.getTel()
+				+ "&email="+ vo.getEmail() + "&pw="+ vo.getPw());
 		return Boolean.parseBoolean(jstr);
 	}
 	
