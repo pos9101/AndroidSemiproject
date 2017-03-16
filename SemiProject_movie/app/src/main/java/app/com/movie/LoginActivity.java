@@ -136,7 +136,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginCheck(){
         if(result==true){
-            Intent intent = new Intent(LoginActivity.this,Main2Activity.class);
+            SharedPreferences sp2 = getSharedPreferences("session",MODE_PRIVATE);
+            SharedPreferences.Editor ed2 = sp2.edit();
+            ed2.putString("id",etId.getText().toString());
+            ed2.commit();
+            Intent intent = new Intent(LoginActivity.this,MovieActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra("id",etId.getText().toString());
             startActivity(intent);

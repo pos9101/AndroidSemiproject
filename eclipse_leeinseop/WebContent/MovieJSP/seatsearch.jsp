@@ -6,7 +6,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	String id = request.getParameter("id");
+// 	String id = request.getParameter("id");
+	String id = session.getAttribute("id").toString();
 	System.out.println("seatsearch id>>>>" + id);
 
 	SeatVO vo = new SeatVO();
@@ -24,6 +25,7 @@
 
 	String cinema = null;
 	String cinemaNumber = null;
+	String cinemaName = null;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -32,7 +34,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="index.do"><button type="submit" class="btn btn-info">홈페이지</button></form>
+<!-- 	<form action="index.do"><button type="submit" class="btn btn-info">홈페이지</button></form> -->
 	<a><%=id%>님 귀하의 예매내역입니다.</a>
 	<br />
 	<table border="1">
@@ -47,14 +49,17 @@
 				}
 				if (vo.getCiNm() < 13) {
 					cinemaNumber = "1관";
+					cinemaName = "콩: 스컬 아일랜드";
 				} else if (vo.getCiNm() < 23 && vo.getCiNm() > 13) {
 					cinemaNumber = "2관";
+					cinemaName = "로건";
 				} else if (vo.getCiNm() < 33 && vo.getCiNm() > 23) {
 					cinemaNumber = "3관";
+					cinemaName = "해빙";
 				}
 		%>
 		<tr>
-			<td>상영관: <%=cinemaNumber%> // 상영시간: <%=cinema%> // 좌석: <%=vo.getSeat()%></td>
+			<td>영화: <%=cinemaName%><br/> 상영관: <%=cinemaNumber%> // 상영시간: <%=cinema%> // 좌석: <%=vo.getSeat()%></td>
 		</tr>
 		<%
 			}

@@ -1,6 +1,7 @@
 package app.com.movie;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,14 +52,25 @@ public class MovieTimeActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-//        String pageNum = intent.getIntExtra("PageNum",1);
-//        Log.i("MovieTimeActivity","PageNum>>>>"+pageNum);
+        int pageNum = intent.getIntExtra("pageNum",1);
+        Log.i("MovieTimeActivity","pageNum>>>>"+pageNum);
 
-//        webview.loadUrl("http://m.ruliweb.com");
-//        getWindow().requestFeature(Window.FEATURE_PROGRESS);
-//
-//        webview.getSettings().setJavaScriptEnabled(true);
-//        setContentView(webview);
+        SharedPreferences sp2 = getSharedPreferences("session",MODE_PRIVATE);
+        String strId = sp2.getString("id","guest");
+        Log.i("MovieTimeActivity",strId);
+
+        if (pageNum==1) {
+            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/kong.do?id="+strId);
+        }else if (pageNum==2) {
+            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/logan.do?id="+strId);
+        }else if (pageNum==3) {
+            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/haebing.do?id="+strId);
+        }
+
+            getWindow().requestFeature(Window.FEATURE_PROGRESS);
+
+        webview.getSettings().setJavaScriptEnabled(true);
+        setContentView(webview);
 
 
 
