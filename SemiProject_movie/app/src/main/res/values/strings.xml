@@ -1,5 +1,4 @@
 <resources>
-
     <string name="app_name">Semiproject_movie</string>
     <string name="title_activity_movie">MovieActivity</string>
     <string name="action_settings">Settings</string>
@@ -8,6 +7,12 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="id">id</string>
+    <string name="password">password</string>
+    <string name="name">name</string>
+    <string name="tel">tel</string>
+    <string name="email">email</string>
+    <string name="man">남자</string>
+    <string name="woman">여자</string>
 
 </resources>
