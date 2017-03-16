@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
             ed2.putString("id",etId.getText().toString());
             ed2.commit();
 
-            Intent intent = new Intent(LoginActivity.this,StatusActivity.class);
+            Intent intent = new Intent(LoginActivity.this,MovieActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
