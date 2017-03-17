@@ -20,7 +20,7 @@
 
 	for (int i = 0; i < list.size(); i++) {
 		vo = list.get(i);
-		System.out.println(vo.getSeat() + "," + vo.getCiNm());
+		System.out.println(vo.getSeat() + "," + vo.getCiNm()+","+ vo.getSeat_ciNm());
 	}
 
 	String cinema = null;
@@ -76,6 +76,9 @@
 		%>
 		<tr>
 			<td>영화: <%=cinemaName%><br/> 상영관: <%=cinemaNumber%> // 상영시간: <%=cinema%> // 좌석: <%=vo.getSeat()%></td>
+			<td><form action="reservaDeleteOK.do">
+			<button type="submit" class="btn btn-info" name="deleteBtn" value=<%=vo.getSeat_ciNm()%>>예매취소</button>
+			</form></td>
 		</tr>
 		<%
 			}

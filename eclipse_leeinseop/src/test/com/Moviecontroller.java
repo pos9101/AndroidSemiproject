@@ -26,7 +26,8 @@ import test.com.SeatVO;
 	"/cinema11insertOK.do", "/cinema12insertOK.do", "/cinema21insertOK.do", "/cinema22insertOK.do", "/cinema31insertOK.do", "/cinema32insertOK.do",
 	 "/button.do", "/cinema1search.do", "/confirm.do", "/seatsearch.do", "/kong.do", "/logan.do", "/haebing.do"
 	,"/cinemaALLjson.do","/cinema11json.do","/cinema12json.do","/cinema21json.do","/cinema22json.do","/cinema31json.do","/cinema32json.do","/cinema3json.do"
-	,"/cinema11deleteOK.do", "/cinema12deleteOK.do", "/cinema21deleteOK.do", "/cinema22deleteOK.do", "/cinema31deleteOK.do", "/cinema32deleteOK.do"})
+	,"/cinema11deleteOK.do", "/cinema12deleteOK.do", "/cinema21deleteOK.do", "/cinema22deleteOK.do", "/cinema31deleteOK.do", "/cinema32deleteOK.do"
+	,"/reservaDeleteOK.do"})
 public class Moviecontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -563,6 +564,33 @@ public class Moviecontroller extends HttpServlet {
 			RequestDispatcher rd = 
 					request.getRequestDispatcher("MovieJSP/haebing.jsp");
 			rd.forward(request, response);
+		}
+		
+		
+		
+		////////////////////////////////////////////
+		///////////reservaDeleteOK//////////////////////
+		/////////////////////////////////////////////
+		
+		else if(sPath.equals("/reservaDeleteOK.do")){
+			String seat_ciNm = request.getParameter("deleteBtn");
+			out.append(seat_ciNm);
+			
+			SeatVO vo = new SeatVO();
+	         vo.setSeat_ciNm(seat_ciNm);;
+	         System.out.println("seat_ciNm>>>> "+seat_ciNm);
+
+	         int result = service.seat_delete(vo);
+	         System.out.println("delete:" + result);
+
+	         if (result == 1) {
+	            System.out.println("delete successed");
+
+	            response.sendRedirect("seatsearch.do");
+	         } else {
+	            System.out.println("delete failed");
+	            response.sendRedirect("MovieJSP/seatsearch.jsp");
+	         }
 		}
 		
 	}
