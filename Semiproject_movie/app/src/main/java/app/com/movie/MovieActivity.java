@@ -439,7 +439,8 @@ public class MovieActivity extends AppCompatActivity
 
                     DecimalFormat df = new DecimalFormat("###,###,###,###"); //관객수 포맷형태 변경 (가독성) ex) 1,525,566 /double->String
                     vos[i].setPage("RANK:"+obj_DBOL.getString("rank")+" 순위변동 "+obj_DBOL.getString("rankInten")+"  "+obj_DBOL.getString("movieNm")+"\n"
-                            +"개봉일:"+obj_DBOL.getString("openDt")+"\n 전일 관객 수:"+df.format(Double.parseDouble(obj_DBOL.getString("audiCnt")))+" 누적 관객 수:"+df.format(Double.parseDouble(obj_DBOL.getString("audiAcc"))));
+                            +"개봉일:"+obj_DBOL.getString("openDt")+"\n 전일 관객 수:"+df.format(Double.parseDouble(obj_DBOL.getString("audiCnt")))
+                            +" 누적 관객 수:"+df.format(Double.parseDouble(obj_DBOL.getString("audiAcc"))));
                     vos[i].setRank(obj_DBOL.getString("rank"));
                     vos[i].setRankInten(obj_DBOL.getString("rankInten"));
                     vos[i].setMovieNm(obj_DBOL.getString("movieNm"));
