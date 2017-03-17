@@ -1,0 +1,6 @@
+create table sign(
+name varchar2(20) not null,
+tel varchar2(20) not null,
+email varchar2(25) not null,
+id varchar(15) not null constraint CONSTID PRIMARY key,
+pw varchar(20) not null);
