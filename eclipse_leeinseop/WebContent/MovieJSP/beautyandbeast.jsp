@@ -31,7 +31,7 @@
 	
 	
 	<p class="text-center">
-	<img src="./img/beautyandbeast.png" class="img-rounded" width="200px"
+	<img src="./img/beautyandbeast.jpg" class="img-rounded" width="200px"
 		height="267px">
 	</p>
 		

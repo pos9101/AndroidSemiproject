@@ -29,7 +29,7 @@
 	
 	
 	<p class="text-center">
-	<img src="./img/kong.png" class="img-rounded" width="200px"
+	<img src="./img/kong.jpg" class="img-rounded" width="200px"
 		height="267px">
 	</p>
 		
