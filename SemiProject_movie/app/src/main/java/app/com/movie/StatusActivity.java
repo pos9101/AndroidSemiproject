@@ -26,10 +26,6 @@ import java.util.Map;
 
 public class StatusActivity extends AppCompatActivity {
 
-    TextView tvName;
-    TextView tvId;
-    TextView tvEmail;
-    TextView tvTel;
     String strId= "";
     String strName="";
     String strEmail="";
@@ -56,21 +52,13 @@ public class StatusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
         Log.i("StatusActivity","onCreate");
-        tvName = (TextView)findViewById(R.id.tv_name);
-        tvId = (TextView)findViewById(R.id.tv_id);
-        tvEmail = (TextView)findViewById(R.id.tv_email);
-        tvTel = (TextView)findViewById(R.id.tv_tel);
         btnUpdate = (Button)findViewById(R.id.btnUpdate);
         btnDelete = (Button)findViewById(R.id.btnDelete);
         statusView = (ListView)findViewById(R.id.lv_status);
         SharedPreferences sp2 = getSharedPreferences("session",MODE_PRIVATE);
         strId = sp2.getString("id","guest");
         vo.setId(strId);
-<<<<<<< HEAD
         Log.i("StatusActivity","id>>"+strId);
-=======
-
->>>>>>> origin/kwoojin
 
 
 
@@ -87,14 +75,6 @@ public class StatusActivity extends AppCompatActivity {
              @Override
              public void onClick(View v) {
 
-<<<<<<< HEAD
-=======
-//                 vo.setPw("password");
-//                 vo.setTel("031-123-456");
-//                 vo.setEmail("aaaa@naver.com");
-//                 vo.setName("jason");
-
->>>>>>> origin/kwoojin
                 switch(v.getId()){
                     case R.id.btnUpdate :
                         func_update();
@@ -115,53 +95,19 @@ public class StatusActivity extends AppCompatActivity {
         try {
             Log.i("StatusActivity","inThread..");
             vo2=reqdao.search(vo);
-<<<<<<< HEAD
             strName=vo2.getName();
             strEmail=vo2.getEmail();
             strTel= vo2.getTel();
-=======
-            strId=vo2.getId();
-            strName=vo2.getName();
-            strEmail=vo2.getEmail();
-            strTel= vo2.getTel();
-            strPw=vo2.getPw();
->>>>>>> origin/kwoojin
-            Log.i("StatusActivity>>",strId+":"+strName+":"+strEmail+":"+strTel);
-            tempMap.put("title","Name");
-            tempMap.put("content",strName);
-            mapList.add(tempMap);
-            tempMap.put("title","ID");
-            tempMap.put("content",strId);
-            mapList.add(tempMap);
-            tempMap.put("title","Email");
-            tempMap.put("content",strEmail);
-            mapList.add(tempMap);
-            tempMap.put("title","Tel");
-            tempMap.put("content",strTel);
-            mapList.add(tempMap);
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                statusView.setAdapter(new SimpleAdapter(
-                        StatusActivity.this,
-                        mapList,
-                        android.R.layout.simple_list_item_2,
-                        mapKey,
-                        layoutId));
-<<<<<<< HEAD
-                tvName.setText(strName);
-                tvId.setText(strId);
-                tvEmail.setText(strEmail);
-                tvTel.setText(strTel);
-=======
-                tvName.setText(vo2.getName());
-                tvId.setText(vo2.getId());
-                tvEmail.setText(vo2.getEmail());
-                tvTel.setText(vo2.getTel());
->>>>>>> origin/kwoojin
+                StatusAdapter statusAdapter = new StatusAdapter(getApplicationContext(),vo2);
+                statusView.setAdapter(statusAdapter);
             }
         });//end Handler
     }//end func_swerch
@@ -188,14 +134,8 @@ public class StatusActivity extends AppCompatActivity {
                             public void run() {
                                 super.run();
                                 up_passCheck =reqdao.loginCheck(vo);
-<<<<<<< HEAD
 
 
-=======
-                                mHandler.post(new Runnable() {
-                                    @Override
-                                    public void run() {
->>>>>>> origin/kwoojin
                                         if(up_passCheck==true){
                                             startActivity(new Intent(StatusActivity.this,UpdateActivity.class)
                                                     .putExtra("id",strId)
@@ -204,7 +144,6 @@ public class StatusActivity extends AppCompatActivity {
                                                     .putExtra("pw",strPw)
                                                     .setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                                         }else{
-<<<<<<< HEAD
                                             mHandler.post(new Runnable() {
                                                 @Override
                                                 public void run() {
@@ -214,13 +153,6 @@ public class StatusActivity extends AppCompatActivity {
                                             });//end Handler
                                         }
 
-=======
-                                            Toast.makeText(StatusActivity.this.getApplicationContext(),
-                                                    "wrong password",Toast.LENGTH_SHORT).show();
-                                        }
-                                    }//end run()
-                                });//end Handler
->>>>>>> origin/kwoojin
 
                             }//end rudn()
                         }.start();//end Thread
