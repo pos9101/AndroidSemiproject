@@ -30,6 +30,7 @@ public class SignupActivity extends AppCompatActivity {
     boolean pass;
     TextView pwtext;
     Handler handler =new Handler();
+    Timer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,12 +63,13 @@ public class SignupActivity extends AppCompatActivity {
                 new Thread(){
                     public void run(){
                         Log.i("SignupActivity>>","run()");
-                        result= reqdao.insert(vo);
+                       if(pass==true) result= reqdao.insert(vo);
+                       else result =false;
                         Log.i("SignupActivity>>",result+"");
                         mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                if(result==true&pass==true){
+                                if(result==true){
                                     new AlertDialog.Builder(SignupActivity.this)
                                             .setIconAttribute(android.R.attr.alertDialogIcon)
                                             .setTitle("Success Sign up")
@@ -119,9 +121,14 @@ public class SignupActivity extends AppCompatActivity {
                         }//end else-if
                     }});//end Handler
             }};//end TimerTask
-        Timer timer= new Timer();
+        timer= new Timer();
         timer.schedule(timerTask,1000,1000);
 
     }//end oncreate
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
+    }
 }//end class
