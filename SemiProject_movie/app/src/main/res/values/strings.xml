@@ -8,4 +8,5 @@
     <string name="man">남자</string>
     <string name="woman">여자</string>
     <string name="mymovie">예매한 영화</string>
+    <string name="whatmovie">영화뭐보죠?</string>
 </resources>

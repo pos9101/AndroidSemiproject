@@ -16,9 +16,10 @@ public class MovieAction {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private SignVO vo;
-	private SignDAO dao ;
+	private SignServiceDAO dao ;
 	private PrintWriter out;
 	private String result = "false";
+	
 
 	
 	public MovieAction(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -27,7 +28,7 @@ public class MovieAction {
 		this.response= response;
 		out = response.getWriter();
 		vo= new SignVO();
-		dao = new SignDAOimpl();
+		dao = new SignServiceDAOimpl();
 	}
 	
 	public void searchAction(){
