@@ -15,7 +15,7 @@
         android:layout_height="50dp"
         android:id="@+id/et_id"
         android:layout_centerHorizontal="true"
-        android:hint="Email"
+        android:hint="ID"
         android:layout_marginTop="151dp" />
 
     <EditText

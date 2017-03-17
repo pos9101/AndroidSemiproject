@@ -35,10 +35,10 @@ public class TestAdapter extends BaseAdapter {
     String[] details = new String[10];
 
     Integer[] imgs = new Integer[]{
-        R.drawable.kong,R.drawable.logan,R.drawable.haebing,
-            R.drawable.jaesim,R.drawable.twenty_three,R.drawable.light_between_ocean,
-            R.drawable.lalaland,R.drawable.moonlight,R.drawable.girlonthetrain,
-            R.drawable.girlonthetrain
+        R.drawable.beautyandbeast,R.drawable.kong,R.drawable.logan,
+            R.drawable.inregular,R.drawable.space,R.drawable.haebing,
+            R.drawable.lalaland,R.drawable.jaesim,R.drawable.light_between_ocean,
+            R.drawable.moonlight
             };
     Context c;
     LayoutInflater inflater;
@@ -106,7 +106,7 @@ public class TestAdapter extends BaseAdapter {
         }
 
         iv = (ImageView)v.findViewById(R.id.gridMovieImage);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(300 , 300);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(300 , 400);
         params.gravity = Gravity.CENTER;    //Layout 과 같이 설정
         iv.setLayoutParams(params);     //image 자체에 설정
         iv.setScaleType(ImageView.ScaleType.CENTER_CROP);

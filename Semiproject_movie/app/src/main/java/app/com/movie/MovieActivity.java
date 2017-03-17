@@ -1,6 +1,7 @@
 package app.com.movie;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -165,6 +167,12 @@ public class MovieActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main2, menu);
+        TextView naviname = (TextView) findViewById(R.id.navi_Name);
+
+        SharedPreferences sp2 = getSharedPreferences("session",MODE_PRIVATE);
+        String strId = sp2.getString("id","guest");
+
+        naviname.setText(strId);
         return true;
     }
 
@@ -210,10 +218,12 @@ public class MovieActivity extends AppCompatActivity
                     getApplicationContext(),
                     StatusActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
-            Log.i("onNIS","nav_share");
-        } else if (id == R.id.nav_send) {
-            Log.i("onNIS","nav_send");
+        } else if (id == R.id.mobozo) {
+            Log.i("onNIS","mobozo");
+            Intent intent = new Intent(
+                    getApplicationContext(),
+                    SensorActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

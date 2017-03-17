@@ -78,10 +78,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                             case Sensor.TYPE_PROXIMITY:
                                 rnd = random.nextInt(3);
                                 if (rnd == 0) {
-                                    imageView.setImageResource(R.drawable.kong);
+                                    imageView.setImageResource(R.drawable.beautyandbeast);
                                     Log.i("SensorActivity", "kong");
                                 } else if (rnd == 1) {
-                                    imageView.setImageResource(R.drawable.haebing);
+                                    imageView.setImageResource(R.drawable.kong);
                                     Log.i("SensorActivity", "heabing");
                                 } else if (rnd == 2) {
                                     imageView.setImageResource(R.drawable.logan);

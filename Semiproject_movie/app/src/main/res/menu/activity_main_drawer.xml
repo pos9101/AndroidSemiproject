@@ -14,19 +14,15 @@
             android:id="@+id/myprofile"
             android:icon="@drawable/ic_menu_manage"
             android:title="내 정보" />
+
+        <item
+            android:id="@+id/mobozo"
+            android:icon="@drawable/ic_menu_share"
+            android:title="영화 뭐 보조?" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="TEST" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="회원탈퇴" />
-        </menu>
-    </item>
+
+
+
 
 </menu>
