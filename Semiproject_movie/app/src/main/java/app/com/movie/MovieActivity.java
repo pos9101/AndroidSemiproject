@@ -327,16 +327,16 @@ public class MovieActivity extends AppCompatActivity
 
                         if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
                             textView.setText(vos[0].getPage());
-                            Log.i("Thread",vos[0].getPage());
+//                            Log.i("Thread",vos[0].getPage());
 
 
                         } else if (getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
                             textView.setText(vos[1].getPage());
-                            Log.i("Thread",vos[1].getPage());
+//                            Log.i("Thread",vos[1].getPage());
 
                         } else if (getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
                             textView.setText(vos[2].getPage());
-                            Log.i("Thread",vos[2].getPage());
+//                            Log.i("Thread",vos[2].getPage());
                         }
 
                     Log.i("ThreadNum",">>>>>"+pageNum+"<<<<<");
@@ -428,8 +428,8 @@ public class MovieActivity extends AppCompatActivity
                     JSONObject obj_DBOL = arr_DBOL.getJSONObject(i);
 
                     DecimalFormat df = new DecimalFormat("###,###,###,###"); //관객수 포맷형태 변경 (가독성) ex) 1,525,566 /double->String
-                    vos[i].setPage("RANK:"+obj_DBOL.getString("rank")+" 순위변동 "+obj_DBOL.getString("rankInten")+" "+obj_DBOL.getString("movieNm")+""
-                            +"개봉일:"+obj_DBOL.getString("openDt")+" 전일 관객 수:"+df.format(Double.parseDouble(obj_DBOL.getString("audiCnt")))+" 누적 관객 수:"+df.format(Double.parseDouble(obj_DBOL.getString("audiAcc"))));
+                    vos[i].setPage("RANK:"+obj_DBOL.getString("rank")+" 순위변동 "+obj_DBOL.getString("rankInten")+"  "+obj_DBOL.getString("movieNm")+"\n"
+                            +"개봉일:"+obj_DBOL.getString("openDt")+"\n 전일 관객 수:"+df.format(Double.parseDouble(obj_DBOL.getString("audiCnt")))+" 누적 관객 수:"+df.format(Double.parseDouble(obj_DBOL.getString("audiAcc"))));
                     vos[i].setRank(obj_DBOL.getString("rank"));
                     vos[i].setRankInten(obj_DBOL.getString("rankInten"));
                     vos[i].setMovieNm(obj_DBOL.getString("movieNm"));
