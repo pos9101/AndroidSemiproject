@@ -14,6 +14,21 @@ public class movieVO {
     private String movieNm;
     private String genreAlt;
     private String peopleNm;
+    private String str;
+    private String detail;
+
+    private String page;
+
+
+
+
+
+
+
+
+
+
+
 
 
     public String getRank() {
@@ -80,5 +95,30 @@ public class movieVO {
     public void setPeopleNm(String peopleNm) {
         this.peopleNm = peopleNm;
     }
+
+    public String getStr() {
+        return str;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
+    }
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
+
 
 }

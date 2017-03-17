@@ -38,14 +38,23 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MovieActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     static int pageNum = 1;
+
+    static movieVO[] vos;
+
+    private final String movieKey ="28337cecac8957a62bcd7505a43cccf4";
+    protected String movieDate ="";
+
 
 
     /**
@@ -67,6 +76,23 @@ public class MovieActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+
+        /////////////////어제날짜로 movieDate 설정하기
+        SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE,-1);
+
+        String yesterday = date.format(cal.getTime());
+        movieDate = yesterday;
+        //////////////////////////////////////////////
+
+
+        new Thread(){
+            @Override
+            public void run() {
+                movieJSON();
+            }
+        }.start();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -204,12 +230,15 @@ public class MovieActivity extends AppCompatActivity
 
         //////////////////////////////////
 
+
+
         TextView textView;
 
-        private final String movieKey ="e53d0f96b48200021aeb4d7decc28155";
-        private String movieDate ="";
 
-        movieVO[] vos;
+        //////////////////////////////
+
+
+
         //////////////////////////////////
 
 
@@ -222,14 +251,6 @@ public class MovieActivity extends AppCompatActivity
         public PlaceholderFragment() {
 
 
-            /////////////////어제날짜로 movieDate 설정하기
-            SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.DATE,-1);
-
-            String yesterday = date.format(cal.getTime());
-            movieDate = yesterday;
-            //////////////////////////////////////////////
 
         }
 
@@ -252,12 +273,18 @@ public class MovieActivity extends AppCompatActivity
             View rootView = inflater.inflate(R.layout.fragment_movie, container, false);
             textView = (TextView) rootView.findViewById(R.id.section_label);
 
-            new Thread(){
+
+            ///////////TIMERTASK/////////
+            TimerTask timerTask =new TimerTask() {
                 @Override
                 public void run() {
-                    movieJSON();
+                    settingThread();
                 }
-            }.start();
+            };
+
+            Timer timer = new Timer();
+            timer.schedule(timerTask,1500);
+
 
             //////////////////////////
 
@@ -287,118 +314,36 @@ public class MovieActivity extends AppCompatActivity
 
         Handler mHandler = new Handler();
 
-        public void movieJSON(){
-            HttpURLConnection conn = null;
-            InputStream is = null;
-            InputStreamReader isr = null;
-            BufferedReader br = null;
+        public void settingThread(){
 
-            URL url = null;
-            try {
-                url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?" +
-                        "key="+movieKey+"&targetDt="+movieDate);
-                conn = (HttpURLConnection) url.openConnection();
-                is = conn.getInputStream();
-                isr = new InputStreamReader(is);
-                br = new BufferedReader(isr);
-                String str = null;
-                StringBuilder sb = new StringBuilder();
-                while ((str = br.readLine()) != null) {
-                    sb.append(str);
-                }
-//            Log.i("MovieActivity",sb.toString());
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
 
-                final String txtJSON = sb.toString();
+                        DecimalFormat df = new DecimalFormat("###,###,###,###"); //관객수 포맷형태 변경 (가독성) ex) 1,525,566 /double->String
 
-                ////txtJSON 의 각 데이터 VO 에 담음.
-                try {
-                    JSONObject obj = new JSONObject(txtJSON);
-                    JSONObject obj_BOR = new JSONObject(obj.getString("boxOfficeResult"));
-                    JSONArray arr_DBOL = new JSONArray(obj_BOR.getString("dailyBoxOfficeList"));
-//                JSONObject[] obj_DBOL = new JSONObject[arr_DBOL.length()]; //혹시 JSONObject 따로저장하고 싶을 때 사용
-                    //for 문 내부도 변경하여야 함.
+                        //필요 한 정보들 출력: 순위, 순위변동, 영화제목, 개봉일, 전일 관객, 누적관객 수
 
 
-
-                    vos = new movieVO[arr_DBOL.length()];   //inner class 인 mhandler에 사용 하므로 final.
-
-                    for(int i=0; i<arr_DBOL.length();i++){
-                        vos[i] = new movieVO();
-                        JSONObject obj_DBOL = arr_DBOL.getJSONObject(i);
-                        vos[i].setRank(obj_DBOL.getString("rank"));
-                        vos[i].setRankInten(obj_DBOL.getString("rankInten"));
-                        vos[i].setMovieNm(obj_DBOL.getString("movieNm"));
-                        vos[i].setOpenDt(obj_DBOL.getString("openDt"));
-                        vos[i].setAudiCnt(obj_DBOL.getString("audiCnt"));
-                        vos[i].setAudiAcc(obj_DBOL.getString("audiAcc"));
-                    }
+                        if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
+                            textView.setText(vos[0].getPage());
+                            Log.i("Thread",vos[0].getPage());
 
 
+                        } else if (getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
+                            textView.setText(vos[1].getPage());
+                            Log.i("Thread",vos[1].getPage());
 
-
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            DecimalFormat df = new DecimalFormat("###,###,###,###"); //관객수 포맷형태 변경 (가독성) ex) 1,525,566 /double->String
-
-                            //필요 한 정보들 출력: 순위, 순위변동, 영화제목, 개봉일, 전일 관객, 누적관객 수
-
-                            if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
-                                textView.setText("RANK:"+vos[0].getRank()+" 순위변동 "+vos[0].getRankInten()+" "+vos[0].getMovieNm()+"\n"
-                                        +"개봉일:"+vos[0].getOpenDt()+"\n 전일 관객 수:"+df.format(Double.parseDouble(vos[0].getAudiCnt()))+" 누적 관객 수:"+df.format(Double.parseDouble(vos[0].getAudiAcc())));
-
-
-
-                            }else if(getArguments().getInt(ARG_SECTION_NUMBER)==2){
-                                textView.setText("RANK:"+vos[1].getRank()+" 순위변동 "+vos[1].getRankInten()+" "+vos[1].getMovieNm()+"\n"
-                                        +"개봉일:"+vos[1].getOpenDt()+"\n 전일 관객 수:"+df.format(Double.parseDouble(vos[1].getAudiCnt()))+" 누적 관객 수:"+df.format(Double.parseDouble(vos[1].getAudiAcc())));
-
-                            }else if(getArguments().getInt(ARG_SECTION_NUMBER)==3){
-                                textView.setText("RANK:"+vos[2].getRank()+" 순위변동 "+vos[2].getRankInten()+" "+vos[2].getMovieNm()+"\n"
-                                        +"개봉일:"+vos[2].getOpenDt()+"\n 전일 관객 수:"+df.format(Double.parseDouble(vos[2].getAudiCnt()))+" 누적 관객 수:"+df.format(Double.parseDouble(vos[2].getAudiAcc())));
-                            }
-
-
+                        } else if (getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
+                            textView.setText(vos[2].getPage());
+                            Log.i("Thread",vos[2].getPage());
                         }
-                    });
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                    Log.i("ThreadNum",">>>>>"+pageNum+"<<<<<");
+                    }
+                });
 
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }finally{
-                if(br!= null){
-                    try {
-                        br.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if(isr!= null){
-                    try {
-                        isr.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if(is != null){
-                    try {
-                        is.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if(conn != null){
-                    conn.disconnect();
-                }
-            }
-        }//end movieJSON()
+        }//end settingThread()
     }
 
     /**
@@ -438,6 +383,144 @@ public class MovieActivity extends AppCompatActivity
         }
     }
 
+
+    public void movieJSON(){
+        HttpURLConnection conn = null;
+        InputStream is = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
+
+        URL url = null;
+        URL url2 = null;
+        try {
+            url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?" +
+                    "key="+movieKey+"&targetDt="+movieDate);
+            conn = (HttpURLConnection) url.openConnection();
+            is = conn.getInputStream();
+            isr = new InputStreamReader(is);
+            br = new BufferedReader(isr);
+            String str = null;
+            StringBuilder sb = new StringBuilder();
+            while ((str = br.readLine()) != null) {
+                sb.append(str);
+            }
+//            Log.i("MovieActivity",sb.toString());
+
+            final String txtJSON = sb.toString();
+
+            ////txtJSON 의 각 데이터 VO 에 담음.
+            try {
+                JSONObject obj = new JSONObject(txtJSON);
+                JSONObject obj_BOR = new JSONObject(obj.getString("boxOfficeResult"));
+                JSONArray arr_DBOL = new JSONArray(obj_BOR.getString("dailyBoxOfficeList"));
+//                JSONObject[] obj_DBOL = new JSONObject[arr_DBOL.length()]; //혹시 JSONObject 따로저장하고 싶을 때 사용
+                //for 문 내부도 변경하여야 함.
+
+
+
+                vos = new movieVO[arr_DBOL.length()];   //inner class 인 mhandler에 사용 하므로 final.
+                for(int i=0; i<arr_DBOL.length(); i++){
+                    vos[i] = new movieVO();
+                }
+                String[] strs_main= new String[arr_DBOL.length()];
+
+                for(int i=0; i<arr_DBOL.length();i++){
+                    JSONObject obj_DBOL = arr_DBOL.getJSONObject(i);
+
+                    DecimalFormat df = new DecimalFormat("###,###,###,###"); //관객수 포맷형태 변경 (가독성) ex) 1,525,566 /double->String
+                    vos[i].setPage("RANK:"+obj_DBOL.getString("rank")+" 순위변동 "+obj_DBOL.getString("rankInten")+" "+obj_DBOL.getString("movieNm")+""
+                            +"개봉일:"+obj_DBOL.getString("openDt")+" 전일 관객 수:"+df.format(Double.parseDouble(obj_DBOL.getString("audiCnt")))+" 누적 관객 수:"+df.format(Double.parseDouble(obj_DBOL.getString("audiAcc"))));
+                    vos[i].setRank(obj_DBOL.getString("rank"));
+                    vos[i].setRankInten(obj_DBOL.getString("rankInten"));
+                    vos[i].setMovieNm(obj_DBOL.getString("movieNm"));
+                    vos[i].setOpenDt(obj_DBOL.getString("openDt"));
+                    vos[i].setAudiCnt(obj_DBOL.getString("audiCnt"));
+                    vos[i].setAudiAcc(obj_DBOL.getString("audiAcc"));
+
+
+
+                    //////////////////////
+                    strs_main[i] = obj_DBOL.getString("movieNm");
+
+
+                    ///////////////////for문 내부 영화 검색 알고리즘
+                    url2 = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key="
+                            + movieKey+"&movieNm="+ URLEncoder.encode(strs_main[i], "UTF-8"));
+//                    Log.i("HHhHHHHH",url2.toString());
+                    conn = (HttpURLConnection) url2.openConnection();
+                    is = conn.getInputStream();
+                    isr = new InputStreamReader(is);
+                    br = new BufferedReader(isr);
+                    String str2 = null;
+                    sb = new StringBuilder();
+                    while ((str2 = br.readLine()) != null) {
+                        sb.append(str2);
+                    }
+
+                    final String txtJSON2 = sb.toString();
+//                    Log.i("txtJSON2>>>>",txtJSON2);
+
+                    JSONObject obj2 = new JSONObject(txtJSON2);
+                    JSONObject obj_MLR = new JSONObject(obj2.getString("movieListResult"));
+                    JSONArray arr_ML = new JSONArray(obj_MLR.getString("movieList"));
+                    JSONObject obj_ML = arr_ML.getJSONObject(0);
+                    vos[i].setGenreAlt(obj_ML.getString("genreAlt"));
+                    vos[i].setStr(obj_ML.getString("movieNm")+"\n"+obj_ML.getString("movieNmEn"));
+
+                    JSONArray arr_DT = new JSONArray(obj_ML.getString("directors"));
+                    JSONObject obj_PM = arr_DT.getJSONObject(0);
+                    vos[i].setPeopleNm(obj_PM.getString("peopleNm"));
+
+
+                    DecimalFormat df2 = new DecimalFormat("###,###,###,###"); //관객수 포맷형태 변경 (가독성) ex) 1,525,566 /double->String
+                    //필요 한 정보들 출력: 순위, 순위변동, 영화제목, 개봉일, 전일 관객, 누적관객 수
+                    vos[i].setDetail("RANK:"+vos[i].getRank()+"  순위변동 "+vos[i].getRankInten()+"\n"
+                            +vos[i].getGenreAlt()+"\n"
+                            +"개봉일:"+vos[i].getOpenDt()+"\n 전일 관객 수:"+df2.format(Double.parseDouble(vos[i].getAudiCnt()))
+                            +"\n 누적 관객 수:"+df2.format(Double.parseDouble(vos[i].getAudiAcc()))
+                            +"\n 감독 :"+vos[i].getPeopleNm());
+
+                    ////////////////////////////////////
+                }
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            if(br!= null){
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(isr!= null){
+                try {
+                    isr.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(is != null){
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null){
+                conn.disconnect();
+            }
+        }
+    }//end movieJSON()
 
 
 }
