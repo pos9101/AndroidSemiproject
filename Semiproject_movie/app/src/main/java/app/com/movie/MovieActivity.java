@@ -293,16 +293,16 @@ public class MovieActivity extends AppCompatActivity
             /////////////// 각 페이지 에 띄울 내용 들
             ImageView movieImage = (ImageView) rootView.findViewById(R.id.movieImage);
             if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
-                movieImage.setImageResource(R.drawable.kong);
+                movieImage.setImageResource(R.drawable.beautyandbeast);
 
 
 
             }else if(getArguments().getInt(ARG_SECTION_NUMBER)==2){
-                movieImage.setImageResource(R.drawable.logan);
+                movieImage.setImageResource(R.drawable.kong);
 
 
             }else if(getArguments().getInt(ARG_SECTION_NUMBER)==3){
-                movieImage.setImageResource(R.drawable.haebing);
+                movieImage.setImageResource(R.drawable.logan);
             }
 
             ///////////////

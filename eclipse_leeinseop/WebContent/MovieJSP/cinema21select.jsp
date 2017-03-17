@@ -27,7 +27,7 @@
 <header>
 		<hgroup>
 			<div class="container">
-				<h1><p class="text-center">로건</p></h1></br>
+				<h1><p class="text-center">콩: 스컬 아일랜드</p></h1></br>
 				<h3><p class="text-center">2관 오전</p></h3>
 			</div>
 		</hgroup>

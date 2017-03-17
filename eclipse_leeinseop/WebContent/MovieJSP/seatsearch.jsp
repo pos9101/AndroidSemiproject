@@ -20,7 +20,7 @@
 
 	for (int i = 0; i < list.size(); i++) {
 		vo = list.get(i);
-		System.out.println(vo.getSeat() + "," + vo.getCiNm());
+		System.out.println(vo.getSeat() + "," + vo.getCiNm()+","+ vo.getSeat_ciNm());
 	}
 
 	String cinema = null;
@@ -65,17 +65,20 @@
 				}
 				if (vo.getCiNm() < 13) {
 					cinemaNumber = "1관";
-					cinemaName = "콩: 스컬 아일랜드";
+					cinemaName = "미녀와 야수";
 				} else if (vo.getCiNm() < 23 && vo.getCiNm() > 13) {
 					cinemaNumber = "2관";
-					cinemaName = "로건";
+					cinemaName = "콩: 스컬 아일랜드";
 				} else if (vo.getCiNm() < 33 && vo.getCiNm() > 23) {
 					cinemaNumber = "3관";
-					cinemaName = "해빙";
+					cinemaName = "로건";
 				}
 		%>
 		<tr>
 			<td>영화: <%=cinemaName%><br/> 상영관: <%=cinemaNumber%> // 상영시간: <%=cinema%> // 좌석: <%=vo.getSeat()%></td>
+			<td><form action="reservaDeleteOK.do">
+			<button type="submit" class="btn btn-info" name="deleteBtn" value=<%=vo.getSeat_ciNm()%>>예매취소</button>
+			</form></td>
 		</tr>
 		<%
 			}

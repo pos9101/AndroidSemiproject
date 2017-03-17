@@ -61,11 +61,11 @@ public class MovieTimeActivity extends AppCompatActivity {
         Log.i("MovieTimeActivity",strId);
 
         if (pageNum==1) {
-            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/kong.do?id="+strId);
+            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/beautyandbeast.do?id="+strId);
         }else if (pageNum==2) {
-            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/logan.do?id="+strId);
+            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/kong.do?id="+strId);
         }else if (pageNum==3) {
-            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/haebing.do?id="+strId);
+            webview.loadUrl("http://192.168.0.161:8090/Semiproject_movie/logan.do?id="+strId);
         }
 
             getWindow().requestFeature(Window.FEATURE_PROGRESS);

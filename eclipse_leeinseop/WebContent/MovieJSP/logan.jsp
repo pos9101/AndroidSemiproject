@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -33,19 +34,19 @@
 		height="267px">
 	</p>
 		
-	
+		
 	<div class="container">	
-	<form action="cinema21select.do">
+	<form action="cinema31select.do">
 		<input type="hidden" name="id" value="<%=id%>" />
-		<p class="text-center"><button type="submit" class="btn btn-info">2관 오전</button></p>
+		<p class="text-center"><button type="submit" class="btn btn-info">3관 오전</button></p>
 	</form>
 	</div>
 	
 	
 	<div class="container">
-	<form action="cinema22select.do">
+	<form action="cinema32select.do">
 		<input type="hidden" name="id" value="<%=id%>" />
-		<p class="text-center"><button type="submit" class="btn btn-info">2관 오후</button></p>
+		<p class="text-center"><button type="submit" class="btn btn-info">3관 오후</button></p>
 	</form>
 	</div>
 	
@@ -53,6 +54,8 @@
 	<div class="container">
 	<a><p class="text-center">아이디: <%=id%></p></a>
 	</div>
+
+
 
 </div>
 </div>

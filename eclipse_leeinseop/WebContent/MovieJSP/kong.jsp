@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<script type="text/javascript" src="./MovieJSP/jquery-3.1.1.js"></script>
-	
-	
-	<%
+
+<%
 	String id = request.getParameter("id");
 	session.setAttribute("id", id);
-	System.out.println("받음>>>>"+id);
-	%>
+	System.out.println("받음>>>>" + id);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,8 +19,8 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-
-
+  
+  
 	<hgroup>
 	<div class="container">
 	<h3><p class="text-center">영화관, 영화시간선택</p></h3>
@@ -35,26 +33,26 @@
 		height="267px">
 	</p>
 		
-		
-	<div class="container">
-	<form action="cinema11select.do">
-		<input type="hidden" name="id" value ="<%=id%>"/>
-		<p class="text-center"><button type="submit" class="btn btn-info">1관 오전</button></p>
+	
+	<div class="container">	
+	<form action="cinema21select.do">
+		<input type="hidden" name="id" value="<%=id%>" />
+		<p class="text-center"><button type="submit" class="btn btn-info">2관 오전</button></p>
 	</form>
 	</div>
 	
 	
 	<div class="container">
-	<form action="cinema12select.do">
-		<input type="hidden" name="id" value ="<%=id%>"/>
-		<p class="text-center"><button type="submit" class="btn btn-info">1관 오후</button></p>
+	<form action="cinema22select.do">
+		<input type="hidden" name="id" value="<%=id%>" />
+		<p class="text-center"><button type="submit" class="btn btn-info">2관 오후</button></p>
 	</form>
 	</div>
+	
 	
 	<div class="container">
 	<a><p class="text-center">아이디: <%=id%></p></a>
 	</div>
-
 
 </div>
 </div>

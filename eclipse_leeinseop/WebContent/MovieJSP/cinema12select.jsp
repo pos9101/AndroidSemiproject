@@ -27,7 +27,7 @@
 	<header> 
 		<hgroup>
 			<div class="container">
-				<h1><p class="text-center">콩: 스컬 아일랜드</p></h1></br>
+				<h1><p class="text-center">미녀와 야수</p></h1></br>
 				<h3><p class="text-center">1관 오후</p></h3>
 			</div>
 		</hgroup> 
