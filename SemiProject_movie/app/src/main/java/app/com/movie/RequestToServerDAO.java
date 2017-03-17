@@ -27,17 +27,27 @@ public class RequestToServerDAO {
 	public SignVO search(SignVO vo) throws JSONException {
 
 		String str =requestQuery(URL_SEARCH+"?id="+vo.getId());
+<<<<<<< HEAD
 		Log.i("RQA>>","search");
+=======
+>>>>>>> origin/kwoojin
 		Log.i("JASON>>",str);
 		 JSONObject jboj = new JSONObject(str);
 					 vo.setId(jboj.getString("id"));
 					 vo.setEmail(jboj.getString("email"));
 					 vo.setName(jboj.getString("name"));
 					 vo.setTel(jboj.getString("tel"));
+<<<<<<< HEAD
 //		Log.i("RQA>>","Name:"+vo.getName());
 //		Log.i("RQA>>","Id:"+vo.getId());
 //		Log.i("RQA>>","Email:"+vo.getEmail());
 //		Log.i("RQA>>","Tel:"+vo.getTel());
+=======
+		Log.i("RQA>>","Name:"+vo.getName());
+		Log.i("RQA>>","Id:"+vo.getId());
+		Log.i("RQA>>","Email:"+vo.getEmail());
+		Log.i("RQA>>","Tel:"+vo.getTel());
+>>>>>>> origin/kwoojin
 		return vo;
 	}
 	
@@ -58,8 +68,13 @@ public class RequestToServerDAO {
 		Log.i("RQA>>","Id:"+vo.getId());
 		Log.i("RQA>>","Email:"+vo.getEmail());
 		Log.i("RQA>>","Tel:"+vo.getTel());
+<<<<<<< HEAD
 		String jstr =requestQuery(URL_UPDATE+"?id="+ vo.getId() + "&tel="+ vo.getTel()
 				+ "&email="+ vo.getEmail() + "&pw="+ vo.getPw());
+=======
+		String jstr =requestQuery(URL_UPDATE+"?id="+ vo.getId() + "&name="+ vo.getName()
+				+ "&tel="+ vo.getTel() + "&email="+ vo.getEmail() + "&pw="+ vo.getPw());
+>>>>>>> origin/kwoojin
 		return Boolean.parseBoolean(jstr);
 	}
 	
