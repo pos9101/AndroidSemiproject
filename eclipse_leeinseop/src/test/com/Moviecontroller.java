@@ -24,7 +24,7 @@ import test.com.SeatVO;
  */
 @WebServlet({"/index.do", "/cinema11select.do", "/cinema12select.do", "/cinema21select.do", "/cinema22select.do", "/cinema31select.do", "/cinema32select.do",
 	"/cinema11insertOK.do", "/cinema12insertOK.do", "/cinema21insertOK.do", "/cinema22insertOK.do", "/cinema31insertOK.do", "/cinema32insertOK.do",
-	 "/button.do", "/cinema1search.do", "/confirm.do", "/seatsearch.do", "/kong.do", "/logan.do", "/haebing.do"
+	 "/button.do", "/cinema1search.do", "/confirm.do", "/seatsearch.do", "/kong.do", "/logan.do", "/beautyandbeast.do"
 	,"/cinemaALLjson.do","/cinema11json.do","/cinema12json.do","/cinema21json.do","/cinema22json.do","/cinema31json.do","/cinema32json.do","/cinema3json.do"
 	,"/cinema11deleteOK.do", "/cinema12deleteOK.do", "/cinema21deleteOK.do", "/cinema22deleteOK.do", "/cinema31deleteOK.do", "/cinema32deleteOK.do"
 	,"/reservaDeleteOK.do"})
@@ -560,9 +560,9 @@ public class Moviecontroller extends HttpServlet {
 			rd.forward(request, response);
 		}
 		
-		else if(sPath.equals("/haebing.do")){
+		else if(sPath.equals("/beautyandbeast.do")){
 			RequestDispatcher rd = 
-					request.getRequestDispatcher("MovieJSP/haebing.jsp");
+					request.getRequestDispatcher("MovieJSP/beautyandbeast.jsp");
 			rd.forward(request, response);
 		}
 		

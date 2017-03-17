@@ -65,13 +65,13 @@
 				}
 				if (vo.getCiNm() < 13) {
 					cinemaNumber = "1관";
-					cinemaName = "콩: 스컬 아일랜드";
+					cinemaName = "미녀와 야수";
 				} else if (vo.getCiNm() < 23 && vo.getCiNm() > 13) {
 					cinemaNumber = "2관";
-					cinemaName = "로건";
+					cinemaName = "콩: 스컬 아일랜드";
 				} else if (vo.getCiNm() < 33 && vo.getCiNm() > 23) {
 					cinemaNumber = "3관";
-					cinemaName = "해빙";
+					cinemaName = "로건";
 				}
 		%>
 		<tr>
