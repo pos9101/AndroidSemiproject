@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/allmovies"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/allmovie"
             android:title="전체 영화 보기" />
         <item
             android:id="@+id/mymovie"
