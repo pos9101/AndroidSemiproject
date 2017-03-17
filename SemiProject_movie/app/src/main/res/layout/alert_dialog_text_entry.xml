@@ -41,8 +41,7 @@
         android:autoText="false"
         android:capitalize="none"
         android:gravity="fill_horizontal"
-        android:password="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="1234" />
+        android:inputType="textPassword"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
         
 </LinearLayout>

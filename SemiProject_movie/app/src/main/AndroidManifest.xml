@@ -27,10 +27,13 @@
         <activity android:name=".MovieTimeActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
+
         <activity android:name=".UpdateActivity" />
         <activity android:name=".MovielistActivity" />
         <activity android:name=".StatusActivity" />
         <activity android:name=".MyReservationActivity"></activity>
+        <activity android:name=".SensorActivity"/>
+
     </application>
 
 </manifest>
