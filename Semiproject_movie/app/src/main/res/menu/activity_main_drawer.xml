@@ -3,21 +3,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/allmovies"
             android:icon="@drawable/ic_menu_camera"
             android:title="전체 영화 보기" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/mymovie"
             android:icon="@drawable/ic_menu_gallery"
             android:title="내 영화 예매 내역" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="내 정보" />
-        <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/myprofile"
             android:icon="@drawable/ic_menu_manage"
-            android:title="내 정보 변경" />
+            android:title="내 정보" />
     </group>
 
     <item android:title="Communicate">

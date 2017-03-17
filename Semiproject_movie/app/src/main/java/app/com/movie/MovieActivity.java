@@ -105,7 +105,7 @@ public class MovieActivity extends AppCompatActivity
                         getApplicationContext(),
                         MovieTimeActivity.class);
                 intent.putExtra("pageNum",pageNum);
-                Log.i("MainActivity",">>>"+pageNum+"<<<pageNum");
+                Log.i("MovieActivity",">>>"+pageNum+"<<<pageNum");
                 startActivity(intent);
             }
         });
@@ -163,24 +163,27 @@ public class MovieActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.allmovies) {
             // Handle the camera action
-            Log.i("onNIS","nav_camera");
+            Log.i("onNIS","All movielist(MovielistActivity)");
             Intent intent = new Intent(
                     getApplicationContext(),
                     MovielistActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_gallery) {
-            Log.i("onNIS","nav_gallery");
+        } else if (id == R.id.mymovie) {
+            Log.i("onNIS","mymovie(seatsearch.do)");
+            Intent intent = new Intent(
+                    getApplicationContext(),
+                    MyReservationActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.myprofile) {
+            Log.i("onNIS","myprofile(StatusActivity)");
             Intent intent = new Intent(
                     getApplicationContext(),
                     StatusActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {
-            Log.i("onNIS","nav_slideshow");
-        } else if (id == R.id.nav_manage) {
-            Log.i("onNIS","nav_manage");
         } else if (id == R.id.nav_share) {
             Log.i("onNIS","nav_share");
         } else if (id == R.id.nav_send) {

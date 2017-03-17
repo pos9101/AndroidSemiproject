@@ -3,7 +3,6 @@
     package="app.com.movie">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -28,9 +27,10 @@
         <activity android:name=".MovieTimeActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".UpdateActivity" />
-        <activity android:name=".MovielistActivity"></activity>
+        <activity android:name=".MovielistActivity" />
+        <activity android:name=".StatusActivity" />
+        <activity android:name=".MyReservationActivity"></activity>
     </application>
 
 </manifest>
