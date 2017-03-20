@@ -36,8 +36,8 @@ public class TestAdapter extends BaseAdapter {
 
     Integer[] imgs = new Integer[]{
         R.drawable.beautyandbeast,R.drawable.kong,R.drawable.logan,
-            R.drawable.inregular,R.drawable.space,R.drawable.haebing,
-            R.drawable.lalaland,R.drawable.jaesim,R.drawable.light_between_ocean,
+            R.drawable.inregular,R.drawable.lalaland,R.drawable.haebing,
+            R.drawable.space,R.drawable.light_between_ocean,R.drawable.jaesim,
             R.drawable.moonlight
             };
     Context c;
